@@ -1,0 +1,20 @@
+button{
+    padding: 12px 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+    background-color: transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    margin: 4px;
+    transition: 0.8s ease-in-out;
+}
+.btn{
+    background-color: aliceblue;
+}
+
+button:hover,button:active{
+    background-color: black;
+    color: white;
+    border: 2px solid #fff;
+    fill: #fff;
+}
