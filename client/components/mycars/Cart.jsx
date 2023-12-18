@@ -176,6 +176,23 @@ const Cart = () => {
           </button>
         </td>
         <td>{Math.round(data.amount * data.days).toLocaleString()}</td>
+
+        <td className="order-status-td">
+          <div
+            className="order-status"
+            style={{
+              color: "black",
+              background:
+                data.status === "Pending"
+                  ? "red"
+                  : data.status === "Approved"
+                  ? "green"
+                  : "grey",
+            }}
+          >
+            {data.status}
+          </div>
+        </td>
         <td>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -192,6 +209,7 @@ const Cart = () => {
   });
 
   const renderbooking = Cart.bookings.map((data) => {
+    console.log(data);
     return (
       <tr key={data.id}>
         <td>
@@ -211,6 +229,22 @@ const Cart = () => {
         <td>{data.from}</td>
         <td>{data.to}</td>
         <td>{Math.round(data.toBePaid).toLocaleString()}</td>
+        <td className="order-status-td">
+          <div
+            className="order-status"
+            style={{
+              color: "black",
+              background:
+                data.status === "Pending"
+                  ? "red"
+                  : data.status === "Approved"
+                  ? "green"
+                  : "grey",
+            }}
+          >
+            {data.status}
+          </div>
+        </td>
         <td>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +286,8 @@ const Cart = () => {
               </svg>
               <p> Car Will Be Picked and Returned To Drop Point</p>
             </div>
-            <table>
+          <div className="table-holder">
+          <table>
               <thead>
                 <th>Car Image</th>
                 <th>Name</th>
@@ -260,10 +295,12 @@ const Cart = () => {
                 <th>Pick-Up Date</th>
                 <th>Days</th>
                 <th>Cost</th>
+                <th>Status</th>
               </thead>
 
               <tbody>{render}</tbody>
             </table>
+          </div>
             <p>
               <b>Payout Amount:.</b> Ksh. {Cart.hireAmount.toLocaleString()}
             </p>
@@ -272,7 +309,8 @@ const Cart = () => {
         {Cart.bookings.length > 0 && (
           <div className="booking-cart">
             <h2>Booked Cars</h2>
-            <table>
+           <div className="table-holder">
+           <table>
               <thead>
                 <th>Car Image</th>
                 <th>Name</th>
@@ -280,10 +318,12 @@ const Cart = () => {
                 <th>From</th>
                 <th>To</th>
                 <th>Cost</th>
+                <th>Status</th>
               </thead>
 
               <tbody>{renderbooking}</tbody>
             </table>
+           </div>
             <p>
               <b>Payout Amount:.</b> Ksh. {Cart.bookingsAmount.toLocaleString()}
             </p>

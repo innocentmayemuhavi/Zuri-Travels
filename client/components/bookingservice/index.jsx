@@ -15,7 +15,7 @@ const BookingService = () => {
     showNotification,
   } = useContext(AuthContext);
 
-  const { Cart, setCart } = useContext(FirebaseContext);
+  const { Cart, setCart,user } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const updatedata = (event, data) => {
     const { name, value } = event.target;
@@ -28,9 +28,10 @@ const BookingService = () => {
       } else {
         setServiceData((prev) => {
           return {
-            
             ...prev,
             [name]: value,
+            uid:user.uid,
+            status: "Pending",
           };
         });
       }

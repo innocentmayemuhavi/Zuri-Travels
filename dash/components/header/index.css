@@ -1,0 +1,39 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 3px;
+}
+
+.account-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 1px 10px;
+  border-radius: 25px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  padding-left: 1px;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #21262d;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+svg{
+    height: 25px;
+    width: 25px;
+    fill: #fff;
+    cursor: pointer;
+}

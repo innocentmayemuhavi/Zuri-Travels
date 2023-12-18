@@ -145,19 +145,19 @@ const FirebaseProvider = ({ children }) => {
         await updateDoc(docRef, {
           cart: Cart,
         });
-        // await updateDoc(docRef1, {
-        //   orders: [
-        //     {
-        //       user: {
-        //         name: user.displayName,
-        //         id: auth.currentUser.uid,
-        //       },
-        //       orders: {
-        //         ...Cart,
-        //       },
-        //     },
-        //   ],
-        // });
+        await updateDoc(docRef1, {
+          orders: [
+            {
+              user: {
+                name: user.displayName,
+                id: auth.currentUser.uid,
+              },
+              orders: {
+                ...Cart,
+              },
+            },
+          ],
+        });
       }
     } catch (error) {
       console.log(error);

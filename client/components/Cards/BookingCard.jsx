@@ -1,20 +1,24 @@
 import { lazy, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const BookingCard = (props) => {
   const navigate = useNavigate();
   const { setServiceData } = useContext(AuthContext);
+  const { user } = useContext(FirebaseContext);
 
   const updatedata = () => {
     setServiceData((prev) => {
       return {
         ...prev,
+        uid: user.uid,
         from: "Kapsabet",
         to: "Mombasa",
         seat: "1a",
         time: "Morning: 07:00",
         cost: 3000,
+        status: "Pending",
         toBePaid: 3000 - 3000 * (prev.offer * 0.01),
       };
     });

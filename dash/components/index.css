@@ -22,30 +22,24 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+/* body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+td,
+th {
+  padding: 2px 20px;
 }
+
 button:hover {
   border-color: #646cff;
 }
@@ -62,7 +56,25 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 7px;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: green;
 }

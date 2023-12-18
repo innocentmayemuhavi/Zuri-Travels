@@ -73,6 +73,9 @@ table {
 .car-notice p {
   margin: 9px;
 }
+td {
+  align-items: center;
+}
 
 td a {
   text-decoration: underline;
@@ -97,6 +100,21 @@ td a:hover {
     font-size: 13px;
     margin: 0px;
   }
+}
+.order-status {
+  height: 30px;
+  padding: 5px 20px;
+  border-radius: 10px;
+  text-align: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-holder{
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
 }
 @media only screen and (max-width: 700px) {
   .Cart {

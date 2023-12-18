@@ -1,0 +1,34 @@
+.order-picture {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+.order-status {
+  border-radius: 17px;
+  padding: 5px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.order-nav {
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.order-nav button {
+  width: 150px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 17px;
+}
+.table-holder{
+  overflow-x: auto;
+}
+

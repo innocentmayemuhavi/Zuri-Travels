@@ -15,3 +15,24 @@
   }
 }
 
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 7px;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: green;
+}

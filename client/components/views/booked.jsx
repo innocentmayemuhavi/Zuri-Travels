@@ -151,6 +151,23 @@ const BookedView = () => {
               <option>{serviceData.time}</option>
             </select>
           </div>
+          <div className="order-status-div">
+                  <label>Status:</label>
+                  <div
+                    className="order-status"
+                    style={{
+                      color: "black",
+                      background:
+                        serviceData.status === "Pending"
+                          ? "red"
+                          : serviceData.status === "Approved"
+                          ? "green"
+                          : "grey",
+                    }}
+                  >
+                    {serviceData.status}
+                  </div>
+                </div>
           <div className="book-btn">
             <button onClick={() => navigate(-1)}>back</button>
             <button onClick={() => DeletingFromBooking(serviceData.id)}>

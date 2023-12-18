@@ -43,7 +43,7 @@ const Header = () => {
         {windowwidth > 1000 ? (
           <div className="logo">
             <img
-              src="./images/sp-logo.jpg"
+              src="./images/log0.jpg"
               onClick={() => navigate("/")}
               style={{
                 cursor: "pointer",

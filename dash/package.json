@@ -10,7 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "apexcharts": "^3.45.0",
+    "axios": "^1.6.2",
+    "buffer": "^6.0.3",
+    "chart.js": "^4.4.1",
     "firebase": "^9.22.2",
+    "framer-motion": "^10.16.16",
     "moment": "^2.29.4",
     "nanoid": "^4.0.2",
     "react": "^18.2.0",

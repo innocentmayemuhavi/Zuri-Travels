@@ -115,6 +115,23 @@ const HiredView = () => {
                     max={productData.date}
                   />
                 </div>
+                <div className="order-status-div">
+                  <label>Status:</label>
+                  <div
+                    className="order-status"
+                    style={{
+                      color: "black",
+                      background:
+                        productData.status === "Pending"
+                          ? "red"
+                          : productData.status === "Approved"
+                          ? "green"
+                          : "grey",
+                    }}
+                  >
+                    {productData.status}
+                  </div>
+                </div>
                 <div className="product-buttons">
                   <button onClick={() => navigate(-1)}>Cancel</button>
                   <button onClick={() => DeletingFromHired(productData.id)}>

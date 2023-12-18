@@ -36,18 +36,26 @@ html body p {
 svg:hover {
   fill: blue;
 }
-td {
-  align-items: center;
+td,
+th {
+  text-align: center;
+
+  padding: 2px 10px;
 }
 svg {
   cursor: pointer;
 }
-.forgot-password,a{
+.forgot-password,
+a {
   color: black;
   text-decoration: underline;
   cursor: pointer;
-
 }
-a:hover,a:focus,a:active,.forgot-password:hover,.forgot-password:focus,.forgot-password:active{
+a:hover,
+a:focus,
+a:active,
+.forgot-password:hover,
+.forgot-password:focus,
+.forgot-password:active {
   font-weight: 600;
 }
