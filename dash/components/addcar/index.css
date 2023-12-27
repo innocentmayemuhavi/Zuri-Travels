@@ -9,7 +9,8 @@
   margin: 7px 0px;
 }
 .carimage img {
-  height: 200px;
+ max-height: 350px;
+ object-fit: cover;
 }
 textarea {
   width: 100%;
