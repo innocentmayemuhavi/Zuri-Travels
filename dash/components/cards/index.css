@@ -77,12 +77,13 @@ background-color: red;
 
 @media screen and (max-width: 768px) {
   .car-card {
-    height: 300px;
+    height: 340px;
   }
   .car-image {
-    height: fit-content;
+    height: 200px;
   }
   .car-image img {
-    height: 220px;
+    height: 200px;
+    object-fit: cover;
   }
 }
