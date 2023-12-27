@@ -1,0 +1,88 @@
+.car-card {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
+  height: 300px;
+  border-radius: 12px;
+  font-size: 13px;
+  position: relative;
+}
+
+.car-image {
+  height: 150px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.car-image img {
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-action {
+  position: absolute;
+  background-color: #21262d;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+.options {
+  padding: 4px 5px;
+  background-color: #21262d;
+  position: absolute;
+  left: 30px;
+  top: 43px;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #21262d transparent;
+  }
+}
+.action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: red;
+  cursor: pointer;
+
+}
+.options:hover {
+  border: 2px solid #ddd;
+   &:after{
+    border: 2px solid #ddd;
+background-color: red;
+   }
+}
+
+.action svg {
+  fill: red;
+}
+
+@media screen and (max-width: 768px) {
+  .car-card {
+    height: 300px;
+  }
+  .car-image {
+    height: fit-content;
+  }
+  .car-image img {
+    height: 220px;
+  }
+}

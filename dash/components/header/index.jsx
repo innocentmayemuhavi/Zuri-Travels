@@ -7,6 +7,7 @@ import { AppContext } from "../context/appcontext";
 const Header = () => {
   const { user } = useContext(FirebaseContext);
   const{showNav,setShowNav}=useContext(AppContext)
+
   return (
     <header>
         {showNav&&<Nav/>}
@@ -21,8 +22,8 @@ const Header = () => {
       </svg>
 
       <div className="account-div">
-        <div className="avatar">{user.displayName[0]}</div>
-        <p>{user.displayName.slice(0, 10)+'...'}</p>
+        <div className="avatar">{user.displayName[0]}</div> 
+         <p>{user.displayName.slice(0, 10)+'...'}</p>
       </div>
     </header>
   );

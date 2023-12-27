@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
+import { Timestamp } from "firebase/firestore";
 const ServiceCardEl = (props) => {
   const { setProductData } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const ServiceCardEl = (props) => {
       onClick={() => {
         setProductData({
           id: props.id,
+          time_of_hire: new Date().toLocaleTimeString(),
           picture: props.picture,
           name: props.name,
           description: props.description,

@@ -71,7 +71,13 @@ const HireService = () => {
     const { name, value } = event.target;
 
     setProductData((prev) => {
-      return { ...prev, [name]: value, status: "Pending", uid: user.uid };
+      return {
+        ...prev,
+        [name]: value,
+        status: "Pending",
+        uid: user.uid,
+      
+      };
     });
   };
 

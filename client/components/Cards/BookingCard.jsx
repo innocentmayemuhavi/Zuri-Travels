@@ -13,6 +13,7 @@ const BookingCard = (props) => {
       return {
         ...prev,
         uid: user.uid,
+        time_of_hire: new Date().toLocaleTimeString(),
         from: "Kapsabet",
         to: "Mombasa",
         seat: "1a",

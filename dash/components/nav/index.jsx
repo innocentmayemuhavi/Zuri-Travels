@@ -28,6 +28,18 @@ const Nav = () => {
         >
           Orders
         </NavLink>
+        <NavLink
+          to={"/addcars"}
+          className={({ isActive }) => (isActive ? "nav-active" : "nav")}
+        >
+          Add Car
+        </NavLink>
+        <NavLink
+          to={"/vehiclemanagement"}
+          className={({ isActive }) => (isActive ? "nav-active" : "nav")}
+        >
+        Vehicle Management
+        </NavLink>
       </div>
     </div>
   );

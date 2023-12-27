@@ -21,6 +21,12 @@ import {
   sendPasswordResetEmail,
   deleteUser,
 } from "firebase/auth";
+import {
+  ref,
+  getStorage,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
@@ -33,7 +39,7 @@ const firebaseConfig = {
   measurementId: "G-H5K80682K8",
 };
 const app = initializeApp(firebaseConfig);
-// const mediaDb = getStorage(app);
+const mediaDb = getStorage(app);
 // const analytics = getAnalytics(app);
 const database = getFirestore();
 
@@ -50,6 +56,7 @@ const FirebaseProvider = ({ children }) => {
   const [docId, setDocId] = useState(null);
   const [lis, setList] = useState({});
   const [list, setListt] = useState({});
+  const [cars, setCars] = useState([]);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
@@ -71,28 +78,38 @@ const FirebaseProvider = ({ children }) => {
               });
 
               setOrders(combinedOrders);
-              setIsLoading(false);
-            } catch (error) {
-              setIsLoading(false);
-            }
+            } catch (error) {}
           });
         }
-      } catch (e) {
+
+        const docRef1 = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
+        getDoc(docRef1).then(async (doc) => {
+          setList({
+            ...doc.data().cart,
+          });
+        });
+        onSnapshot(docRef1, async (doc) => {
+          setList({
+            ...doc.data().cars,
+          });
+        });
+
+        const carDocRef = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
+        getDoc(carDocRef).then(async (doc) => {
+          setCars({
+            ...doc.data().cars,
+          });
+        });
+        onSnapshot(carDocRef, async (doc) => {
+          setCars({
+            ...doc.data().cars,
+          });
+        });
+
         setIsLoading(false);
+      } catch (e) {
         console.log(e);
       }
-    });
-
-    const docRef1 = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
-    getDoc(docRef1).then(async (doc) => {
-      setList({
-        ...doc.data().cart,
-      });
-    });
-    onSnapshot(docRef1, async (doc) => {
-      setList({
-        ...doc.data().cars,
-      });
     });
   }, []);
 
@@ -114,14 +131,11 @@ const FirebaseProvider = ({ children }) => {
 
         setOrders(combinedOrders);
         setListt(combinedOrders);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-      }
+      } catch (error) {}
     });
   }, [lis]);
 
-  const updateState = async (uid, id,type) => {
+  const updateState = async (uid, id, type) => {
     try {
       const docRef = doc(database, "users", uid);
       onSnapshot(docRef, async (doc) => {
@@ -214,6 +228,24 @@ const FirebaseProvider = ({ children }) => {
     }
   }, [docToUpdate1]);
 
+  const uploadCar = async () => {
+    try {
+      if (Object.values(cars).length > 1) {
+        const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
+
+        await updateDoc(docRef1, {
+          cars: cars,
+        });
+        console.log("added car");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    uploadCar();
+  }, [cars]);
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -227,6 +259,12 @@ const FirebaseProvider = ({ children }) => {
         docToUpdate,
         docToUpdate1,
         updateState1,
+        cars,
+        ref,
+        mediaDb,
+        uploadBytesResumable,
+        getDownloadURL,
+        setCars,
       }}
     >
       {children}

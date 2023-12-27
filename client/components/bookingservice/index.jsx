@@ -32,6 +32,7 @@ const BookingService = () => {
             [name]: value,
             uid:user.uid,
             status: "Pending",
+            time:new Date().toDateString()
           };
         });
       }
@@ -43,8 +44,6 @@ const BookingService = () => {
 
     if (Exists) {
       let filll = Cart.bookings.filter((data) => data.id === id);
-      console.log(filll[0].id);
-      console.log("its here");
       setNotification((prev) => {
         return (
           <p>

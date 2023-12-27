@@ -1,13 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "../context/firebase";
 import Chart from "react-apexcharts";
-
+import ReactApexChart from "react-apexcharts";
+import { RadialChart } from "react-vis";
+import "./index.css";
 import { Loader } from "../loading";
 import { Header } from "../header";
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 const DashBoard = () => {
+  ChartJS.register(ArcElement, Tooltip, Legend);
   const { isLoading, orders } = useContext(FirebaseContext);
-  const [no, setNo] = useState(0);
-  console.log(orders);
+  const [no, setNo] = useState({
+    hires: 0,
+    bookings: 0,
+    total: 0,
+  });
 
   const key = "FacMP6gkbqa90AsNgfkBTVdZ9htaGqAB";
   const sec = "yzKJYxiVMjxSOYKl";
@@ -29,39 +38,21 @@ const DashBoard = () => {
     }
   }, [orders]);
 
-  const state = {
-          
-    series: [44, 55, 67, 83],
-    options: {
-      chart: {
-        height: 350,
-        type: 'radialBar',
+  const data = {
+    labels: ["Total Car Hires", "Total Car Bookings"],
+    datasets: [
+      {
+        label: "",
+        data: [no.hires, no.bookings],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+        borderWidth: 1,
       },
-      plotOptions: {
-        radialBar: {
-          dataLabels: {
-            name: {
-              fontSize: '22px',
-            },
-            value: {
-              fontSize: '16px',
-            },
-            total: {
-              show: true,
-              label: 'Total',
-              formatter: function (w) {
-                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                return 249
-              }
-            }
-          }
-        }
-      },
-      labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
-    },
-  
-  
+    ],
   };
+
+
+  console.log(isLoading)
 
   return (
     <>
@@ -80,38 +71,14 @@ const DashBoard = () => {
             <h3>Total Hires And Orders : {no.total}</h3>
           </>
 
-          <Chart
-            options={state.options}
-            series={state.series}
-            width={380}
-            type="donut"
-          />
-
-
-    
-
-          {/* <button
-            onClick={async () => {
-              const auth = new Buffer(`${key}:${sec}`).toString("base64");
-              try {
-                await fetch(
-                  "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials",
-                  {
-                    headers: {
-                      Authorization: `Basic ${auth}`,
-                    },
-                  }
-                ).then((data) => console(data.json()));
-              } catch (error) {
-                console.log(error);
-              }
-            }}
-          >
-            Generate
-          </button> */}
+          <div className="chart">
+            <Doughnut data={data} />
+          </div>
         </>
       )}
     </>
+
+    
   );
 };
 
