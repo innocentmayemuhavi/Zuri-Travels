@@ -65,6 +65,7 @@
   text-align: justify;
   padding: 2px 20px;
   font-weight: 500;
+  z-index: 10000;
 }
 .phone-nav hr {
   width: 100%;

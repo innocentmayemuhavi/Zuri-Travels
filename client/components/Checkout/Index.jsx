@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
+import CreditCard from "../credit";
 const Checkout = () => {
   const [showvisa, setshowvisa] = useState(true);
   const { isLoading, setisLoading } = useContext(AuthContext);
@@ -163,9 +164,12 @@ const Checkout = () => {
                   </div>
                 </section>
 
-                <section>
-                  {showvisa ? <Pay_By_Card /> : <Pay_By_Mpesa />}
-                </section>
+                <>
+                  {showvisa ? <CreditCard /> : <Pay_By_Mpesa />}
+                </>
+                
+
+                
               </fieldset>
             </section>
           </div>

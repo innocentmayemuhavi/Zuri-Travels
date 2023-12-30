@@ -1,0 +1,117 @@
+.credit-card-div {
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+  max-height: 270px;
+  width: 450px;
+  box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.4);
+  border-radius: 17px;
+  align-self: center;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  padding: 10px 30px 30px;
+  background: linear-gradient(57deg, #000 50%, #323941 50%);
+  color: #fff;
+  overflow: hidden;
+  backface-visibility: hidden;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.credit-card-div-hover {
+  transform: rotateY(360deg);
+}
+
+.chip {
+  height: 100px;
+  width: 130px;
+  border-radius: 12px;
+}
+.chip img {
+  height: 100px;
+  width: 130px;
+  object-fit: cover;
+  border-radius: 40px;
+}
+.credit-card-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 4px;
+}
+.card-form button {
+  max-width: 150px;
+  align-self: center;
+  width: 150px;
+}
+.card-form input,
+select {
+  text-align: right;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 15px 10px;
+  outline: none;
+  background: none;
+  min-width: 150px;
+  margin: 10px 3px;
+  font-size: 19px;
+  letter-spacing: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid £d3d3d3;
+}
+
+.form-exp-date {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.form-split {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cvv {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.focused {
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 1px 10px;
+  transition: 0.5s;
+  box-shadow: 0px 0px 10px 0px #fff;
+}
+
+h2 {
+  padding: 0;
+  margin: 10px;
+}
+
+.back {
+  padding: 10% 2px;
+}
+.strip {
+  background-color: #6b7280;
+  width: 100%;
+  height: 40px;
+}
+.cvv-strip {
+  text-align: right;
+  width: 100%;
+  height: 40px;
+  color: black;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+.cvv-label {
+  align-self: right;
+  text-align: right;
+}
