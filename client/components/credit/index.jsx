@@ -126,31 +126,31 @@ const CreditCard = () => {
               </svg>{" "}
             </div>
             <div className="card-number">
-              <h2>CARD NUMBER</h2>
+              <h4>CARD NUMBER</h4>
               <div className={tab === 0 && "focused"}>
-                <h2>
+                <h5>
                   {data.cardNumber.length > 0 &&
                     data.cardNumber.match(/.{1,4}/g).join(" ")}
-                </h2>
+                </h5>
               </div>
             </div>
             <div className="credit-card-footer">
               <div>
-                <h2>Card Holder</h2>
+                <h4>Card Holder</h4>
                 <div className={tab === 1 && "focused"}>
                   {" "}
-                  <h3>
+                  <h5>
                     {data.name.length < 1 ? "***Owner NAme***" : data.name}
-                  </h3>
+                  </h5>
                 </div>
               </div>
               <div>
-                <h2>EXP</h2>
+                <h4>EXP</h4>
                 <div className={tab === 2 && "focused"}>
-                  <h3>
+                  <h5>
                     {data.month.length < 1 ? "MM" : data.month} /
                     {data.year.length < 1 ? "yy" : data.year.slice(-2)}
-                  </h3>
+                  </h5>
                 </div>
               </div>
             </div>
@@ -158,9 +158,9 @@ const CreditCard = () => {
         ) : (
           <div className="back">
             <div className="strip"></div>
-            <h2 className="cvv-label">CVV</h2>
+            <h4 className="cvv-label">CVV</h4>
             <div className={`cvv-strip  ${tab === 2 && "focused"}`}>
-              <h2>{data.cvv.length < 1 ? "***" : data.cvv}</h2>
+              <h5>{data.cvv.length < 1 ? "***" : data.cvv}</h5>
             </div>
           </div>
         )}
