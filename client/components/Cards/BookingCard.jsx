@@ -16,7 +16,7 @@ const BookingCard = (props) => {
         time_of_hire: new Date().toLocaleTimeString(),
         from: "Kapsabet",
         to: "Mombasa",
-        seat: "1a",
+        seat: "1A",
         time: "Morning: 07:00",
         cost: 3000,
         status: "Pending",

@@ -6,6 +6,8 @@ import { Timestamp } from "firebase/firestore";
 const ServiceCardEl = (props) => {
   const { setProductData } = useContext(AuthContext);
   const navigate = useNavigate();
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split("T")[0];
   return (
     <div
       className="service"
@@ -17,6 +19,7 @@ const ServiceCardEl = (props) => {
           name: props.name,
           description: props.description,
           days: 1,
+          pick_up: formattedDate,
           amount: props.price,
           drop_point: "Kencom Point",
         });

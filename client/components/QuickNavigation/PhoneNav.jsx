@@ -15,7 +15,10 @@ const Phonenav = () => {
   // }, []);
 
   return (
-    <section className="phone-nav-overlay">
+    <section
+      className="phone-nav-overlay"
+      onClick={() => setShowPhoneNav(false)}
+    >
       <section className="phone-nav">
         <svg
           xmlns="http://www.w3.org/2000/svg"

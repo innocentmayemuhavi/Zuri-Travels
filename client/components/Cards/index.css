@@ -35,8 +35,6 @@
   border-radius: 5px;
   box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
   cursor: pointer;
-
- 
 }
 .booking-card-image {
   height: 230px;
@@ -56,11 +54,11 @@
   font-size: 20px;
   text-transform: capitalize;
 }
-.offer-tag{
+.offer-tag {
   position: absolute;
   top: 1px;
   left: 2px;
-  background-color:#fff ;
+  background-color: #fff;
   box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.4);
   padding: 3px 10px;
   height: 30px;
@@ -68,21 +66,29 @@
   border-radius: 10px;
 }
 
-.trips-tag{
-  
-
-  background-color:#fff ;
+.trips-tag {
+  background-color: #fff;
   box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.4);
   padding: 3px 10px;
   height: 30px;
   line-height: 1;
   border-radius: 10px;
 }
-.offer-tag p,.trips-tag p{
+.offer-tag p,
+.trips-tag p {
   font-weight: 700;
   color: green;
   margin: 1px;
   font-size: 16px;
+}
+.load-card {
+  border-radius: 40px;
+  height: 220px;
+  max-width: 220px;
+  padding: 0%;
+  margin: 0%;
+  z-index: -1;
+  position: relative;
 }
 @media only screen and (max-width: 800px) {
   .service-picture {

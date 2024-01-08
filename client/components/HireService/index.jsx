@@ -10,12 +10,14 @@ const HireService = () => {
   const navigate = useNavigate();
   const { setShowNotification, setNotification, productData, setProductData } =
     useContext(AuthContext);
-
+  
   const { Cart, setCart, user, isLoading } = useContext(FirebaseContext);
   const currentDate = new Date().toISOString().split("T")[0];
 
   const Saving = async (id) => {
     const Exists = Cart.cars.find((prev) => prev.id === id);
+  
+    
 
     if (Exists) {
       let filll = Cart.cars.filter((data) => data.id === id);

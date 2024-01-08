@@ -172,6 +172,7 @@ const Checkout = () => {
                 
               </fieldset>
             </section>
+
           </div>
         </main>
       )}

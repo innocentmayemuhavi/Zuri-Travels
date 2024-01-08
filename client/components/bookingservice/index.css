@@ -13,13 +13,11 @@
   z-index: 10001;
 }
 .service-page-section {
-  
   display: grid;
   grid-template: auto auto / repeat(2, 1fr);
   gap: 25px;
   padding: 7px 3px;
   margin-top: 40px;
-
 }
 
 .service-page-image {
@@ -39,15 +37,38 @@
   padding: 20px;
   text-transform: capitalize;
 }
+.grid-cell {
+  border: 2px solid black;
+
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  cursor: pointer;
+  text-align: center;
+}
 .c-d {
   display: flex;
   justify-content: space-between;
   padding: 1px 10px;
   align-items: center;
 }
+.g {
+  width: 250px;
+  display: grid;
+  grid-template: repeat(8, auto) / repeat(5, auto);
+  gap: 8px;
+  justify-self: center;
+  align-self: center;
+}
+
 .c-d span {
   text-decoration: line-through;
   color: gray;
+}
+.booked {
+  background-color: red; /* Set the background color to red for booked seats */
 }
 .book-btn {
   width: 100%;
@@ -60,6 +81,12 @@
   margin: 1px 12px;
 }
 
+.seats-holder{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+
+}
 @media only screen and (max-width: 1000px) {
   .service-page {
     padding: 2px 5px;

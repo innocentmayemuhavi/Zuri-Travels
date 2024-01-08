@@ -13,7 +13,7 @@
   background: linear-gradient(57deg, #000 50%, #323941 50%);
   color: #fff;
   overflow: hidden;
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
   cursor: pointer;
   text-transform: uppercase;
 }
@@ -50,7 +50,7 @@
   width: 150px;
 }
 .card-form input,
-select {
+.card-form select {
   text-align: right;
   border: 1px solid black;
   border-radius: 12px;
@@ -88,10 +88,10 @@ select {
   box-shadow: 0px 0px 10px 0px #fff;
 }
 
-h2 {
+/* h2 {
   padding: 0;
   margin: 10px;
-}
+} */
 
 .back {
   padding: 10% 2px;
@@ -114,4 +114,10 @@ h2 {
 .cvv-label {
   align-self: right;
   text-align: right;
+}
+
+@media screen and (max-width: 1028) {
+  .credit-card-div h2 {
+    font-size: 12px;
+  }
 }
