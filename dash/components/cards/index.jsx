@@ -7,7 +7,6 @@ const CarCard = (car) => {
   const [showOptions, setShowOptions] = useState(false);
   const { cars, setCars } = useContext(FirebaseContext);
 
-
   const deleteCar = (id) => {
     const newCars = Object.values(cars).filter((car) => car.id !== id);
 
@@ -17,7 +16,18 @@ const CarCard = (car) => {
       };
     });
 
-    handleCardActionClick()
+    handleCardActionClick();
+  };
+
+  const clearBookings = (id) => {
+    const newBookings = Object.values(cars).map((car) => {
+      return car.id === id ? { ...car, bookedSeats: [] } : car;
+    });
+    setCars((prev) => {
+      return {
+        ...newBookings,
+      };
+    });
   };
 
   const handleCardActionClick = () => {
@@ -25,9 +35,12 @@ const CarCard = (car) => {
   };
 
   return (
-    <div className="car-card" onClick={()=>{
-      showOptions&&handleCardActionClick()
-    }}>
+    <div
+      className="car-card"
+      onClick={() => {
+        showOptions && handleCardActionClick();
+      }}
+    >
       <div className="car-image">
         <div className="card-action" onClick={handleCardActionClick}>
           <svg
@@ -53,6 +66,21 @@ const CarCard = (car) => {
               </svg>
               Delete
             </div>
+            {car.category === "coach" && (
+              <div className="action" onClick={() => clearBookings(car.id)}>
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                >
+                  <path d="M5.029 2.217a6.5 6.5 0 0 1 9.437 5.11.75.75 0 1 0 1.492-.154 8 8 0 0 0-14.315-4.03L.427 1.927A.25.25 0 0 0 0 2.104V5.75A.25.25 0 0 0 .25 6h3.646a.25.25 0 0 0 .177-.427L2.715 4.215a6.491 6.491 0 0 1 2.314-1.998ZM1.262 8.169a.75.75 0 0 0-1.22.658 8.001 8.001 0 0 0 14.315 4.03l1.216 1.216a.25.25 0 0 0 .427-.177V10.25a.25.25 0 0 0-.25-.25h-3.646a.25.25 0 0 0-.177.427l1.358 1.358a6.501 6.501 0 0 1-11.751-3.11.75.75 0 0 0-.272-.506Z"></path>
+                  <path d="M9.06 9.06a1.5 1.5 0 1 1-2.12-2.12 1.5 1.5 0 0 1 2.12 2.12Z"></path>
+                </svg>
+                Clear Bookings
+              </div>
+            )}
           </div>
         )}
         <img src={car.picture} />

@@ -58,17 +58,25 @@
 .action {
   display: flex;
   align-items: center;
+  justify-content: start;
   gap: 10px;
   color: red;
   cursor: pointer;
-
+  flex-direction: row;
+  padding: 4px 10px;
+  transition: 0.5s ease-in-out;
+  margin: 4px 0;
+  border-radius: 12px;
+}
+.action:hover {
+  background-color: #ddd;
 }
 .options:hover {
   border: 2px solid #ddd;
-   &:after{
+  &:after {
     border: 2px solid #ddd;
-background-color: red;
-   }
+    background-color: red;
+  }
 }
 
 .action svg {

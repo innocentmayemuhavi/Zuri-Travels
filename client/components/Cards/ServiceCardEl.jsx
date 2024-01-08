@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 import { Timestamp } from "firebase/firestore";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const ServiceCardEl = (props) => {
   const { setProductData } = useContext(AuthContext);
+  const { user } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
@@ -14,6 +16,7 @@ const ServiceCardEl = (props) => {
       onClick={() => {
         setProductData({
           id: props.id,
+          uid: user.uid,
           time_of_hire: new Date().toLocaleTimeString(),
           picture: props.picture,
           name: props.name,
@@ -21,6 +24,7 @@ const ServiceCardEl = (props) => {
           days: 1,
           pick_up: formattedDate,
           amount: props.price,
+          status: "Pending",
           drop_point: "Kencom Point",
         });
         navigate("/service");
