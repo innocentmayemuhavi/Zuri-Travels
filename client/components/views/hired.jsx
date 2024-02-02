@@ -6,7 +6,7 @@ import { Header } from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import Loading from "../Loading";
-import ServiceData from "../SystemData/ServiceData";
+
 const HiredView = () => {
   const navigate = useNavigate();
   const { setShowNotification, setNotification, productData, setProductData } =

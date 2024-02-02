@@ -1,5 +1,5 @@
-import CarHirePage from "../CarHirePage";
-import CarBookingPage from "../Travelingpage";
+import {CarHirePage} from "../CarHirePage/carhire";
+import {CarBookingPage} from "../Travelingpage/booking";
 import { Home } from "../Homepage/Home";
 
 import {
@@ -30,6 +30,7 @@ import { Cart } from "../mycars/Cart";
 import Loading from "../Loading";
 import BookedView from "../views/booked";
 import { HiredView } from "../views/hired";
+import { HomeMobile } from "../Homepage/index";
 
 const ProtectedRoute = ({ children }) => {
   const { user, isLoading } = useContext(FirebaseContext);
@@ -50,7 +51,7 @@ const AppRoutes = () => {
         path="/"
         element={
           <ProtectedRoute>
-            <Home />
+            <HomeMobile />
           </ProtectedRoute>
         }
       />

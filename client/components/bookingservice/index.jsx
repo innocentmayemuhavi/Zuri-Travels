@@ -69,26 +69,27 @@ const BookingService = () => {
         totalAmount: bookingsAmount + prev.hireAmount,
       }));
 
-      const newBookings = Object.values(cars).filter((data) => data.id === id)[0]
-      .bookedSeats;
-    newBookings.push(serviceData.seat);
+      const newBookings = Object.values(cars).filter(
+        (data) => data.id === id
+      )[0].bookedSeats;
+      newBookings.push(serviceData.seat);
 
-    console.log(newBookings);
+      console.log(newBookings);
 
-    const newData1 = Object.values(cars).map((data) => {
-      return data.id === id
-        ? {
-            ...data,
-            bookedSeats: newBookings,
-          }
-        : data;
-    });
+      const newData1 = Object.values(cars).map((data) => {
+        return data.id === id
+          ? {
+              ...data,
+              bookedSeats: newBookings,
+            }
+          : data;
+      });
 
-    setCars((prev) => {
-      return {
-        ...newData1,
-      };
-    });
+      setCars((prev) => {
+        return {
+          ...newData1,
+        };
+      });
       let filll = newData.filter((data) => data.id === id);
 
       setNotification((prev) => (
@@ -99,9 +100,6 @@ const BookingService = () => {
       ));
       setShowNotification(true);
     }
-
-  
-  
   };
   const SeatOptions = ({ seats, bookedSeats }) => {
     const generateLabel = (index) => {
@@ -149,103 +147,130 @@ const BookingService = () => {
   };
 
   return (
-    <main className="service-page">
+    <main>
       {showNotification && <Notifications />}
-      <div className="service-page-header">
-        <div>
-          {" "}
+      <div className="header-mobile">
+        <button className="rounded_button" onClick={() => navigate(-1)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            onClick={() => navigate(-1)}
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
           >
-            <path d="M10.78 19.03a.75.75 0 01-1.06 0l-6.25-6.25a.75.75 0 010-1.06l6.25-6.25a.75.75 0 111.06 1.06L5.81 11.5h14.44a.75.75 0 010 1.5H5.81l4.97 4.97a.75.75 0 010 1.06z"></path>
+            <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
           </svg>
-        </div>
-
-        <div className="trips-tag">
-          <p>{serviceData.trips} Trip(s)/Day</p>
-        </div>
+        </button>
+        <h2>Car Hire</h2>
+        <button className="rounded_button" >
+          <img src="/images/Untitled (4).png" height={35} width={35} />
+        </button>
       </div>
-      <div className="service-page-section">
-        <div className="service-page-image">
-          <img src={serviceData.picture} alt="Bus Preview"></img>
-          <div className="offer-tag">
-            <p>{serviceData.offer} % OFF</p>
-          </div>
-        </div>
-        <div className="service-page-data">
-          <div className="c-d">
-            <h3>Bus Name: {serviceData.name}</h3>
-            <h3>
-              Price:<span>{Math.round(serviceData.cost).toLocaleString()}</span>{" "}
-              <p>
-                Now:
-                {Math.round(
-                  serviceData.cost -
-                    serviceData.cost * (serviceData.offer * 0.01)
-                ).toLocaleString()}
-              </p>
-            </h3>
-          </div>
-          <div className="page-input">
-            <label>From:</label>
-            <select
-              value={serviceData.from}
-              onChange={() => handleInputChange(event, { ...serviceData })}
-              name="from"
-            >
-              <option>Kapsabet</option>
-              <option>Nairobi</option>
-              <option>Mombasa</option>
-            </select>
-          </div>
 
-          <div className="page-input">
-            <label>To:</label>
-            <select
-              value={serviceData.to}
-              onChange={() => handleInputChange(event, { ...serviceData })}
-              name="to"
-            >
-              <option>Kapsabet</option>
-              <option>Nairobi</option>
-              <option>Mombasa</option>
-            </select>
+      <div className="page_holder">
+        <div className="service-page-section">
+          <div className="service-page-image">
+            <img src={serviceData.picture} alt="Bus Preview"></img>
           </div>
-          <div className="seats-holder">
-            <GridComponent
-              seats={serviceData.seats}
-              bookedSeats={serviceData.bookedSeats}
-            />
+          <div className="service-page-data">
+            <div className="car-service-data">
+              <div>
+                <h4>Car Details</h4>
+                <p>
+                  Name: <span>{serviceData.name}</span>
+                </p>
+                <p>
+                  Trips (S): <span>{serviceData.trips}</span>
+                </p>
+                <p>
+                  Booking cost: Ksh.{" "}
+                  <span>{parseInt(serviceData.price).toLocaleString()}</span>
+                </p>
+                <p>
+                  Discount: <span>{serviceData.offer} %</span>
+                </p>
+                <p>
+                  New booking cost: Ksh.{" "}
+                  <span>
+                    {Math.round(
+                      serviceData.cost -
+                        serviceData.cost * (serviceData.offer * 0.01)
+                    ).toLocaleString()}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div className="booking_info">
+              <h4>Booking infomattion</h4>
+              <div className="page-input">
+                <label>From:</label>
+                <select
+                  value={serviceData.from}
+                  onChange={() => handleInputChange(event, { ...serviceData })}
+                  name="from"
+                >
+                  <option>Kapsabet</option>
+                  <option>Nairobi</option>
+                  <option>Mombasa</option>
+                </select>
+              </div>
+
+              <div className="page-input">
+                <label>To:</label>
+                <select
+                  value={serviceData.to}
+                  onChange={() => handleInputChange(event, { ...serviceData })}
+                  name="to"
+                >
+                  <option>Kapsabet</option>
+                  <option>Nairobi</option>
+                  <option>Mombasa</option>
+                </select>
+              </div>
+
+              <h4>Seats</h4>
+              <div className="seats-holder">
+                <h4></h4>
+                <GridComponent
+                  seats={serviceData.seats}
+                  bookedSeats={serviceData.bookedSeats}
+                />
+              </div>
+              <div className="page-input">
+                <label>Seat:</label>
+                <SeatOptions
+                  seats={serviceData.seats}
+                  bookedSeats={serviceData.bookedSeats}
+                />
+              </div>
+              <div className="page-input">
+                <label>Time:</label>
+                <select
+                  value={serviceData.time}
+                  name="time"
+                  onChange={() => handleInputChange(event, { ...serviceData })}
+                >
+                  <option>Morning: 07:00</option>
+                  {serviceData.trips === 3 && <option>AfterNoon: 12:00</option>}
+                  <option>Evening: 19:00</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="book-btn">
+              <button onClick={() => navigate(-1)} className="button_yellow">
+                Cancel
+              </button>
+              <button
+                onClick={() => handleBooking(serviceData.id)}
+                className="button_yellow"
+              >
+                Book
+              </button>
+            </div>
           </div>
-          <div className="page-input">
-            <label>Seat:</label>
-            <SeatOptions
-              seats={serviceData.seats}
-              bookedSeats={serviceData.bookedSeats}
-            />
-          </div>
-          <div className="page-input">
-            <label>Time:</label>
-            <select
-              value={serviceData.time}
-              name="time"
-              onChange={() => handleInputChange(event, { ...serviceData })}
-            >
-              <option>Morning: 07:00</option>
-              {serviceData.trips === 3 && <option>AfterNoon: 12:00</option>}
-              <option>Evening: 19:00</option>
-            </select>
-          </div>
-          <div className="book-btn">
-            <button onClick={() => navigate(-1)}>Cancel</button>
-            <button onClick={() => handleBooking(serviceData.id)}>Book</button>
-          </div>
+          <div className="card_footer"></div>
         </div>
-        <div className="card_footer"></div>
       </div>
     </main>
   );

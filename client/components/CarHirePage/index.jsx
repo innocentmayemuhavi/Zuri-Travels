@@ -1,4 +1,3 @@
-import ServiceData from "../SystemData/ServiceData";
 import { ServiceCardEl } from "../Cards/ServiceCardEl";
 import { Header } from "../Header/Header";
 import { Footer } from "../footer/Footer";

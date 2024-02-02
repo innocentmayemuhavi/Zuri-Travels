@@ -1,36 +1,29 @@
 .service-page {
   padding: 3px 10%;
 }
-.service-page-header {
-  top: 0;
-  background-color: #fff;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  position: fixed;
-  z-index: 10001;
-}
+
 .service-page-section {
   display: grid;
   grid-template: auto auto / repeat(2, 1fr);
   gap: 25px;
   padding: 7px 3px;
-  margin-top: 40px;
-}
 
+  max-width: 1028px;
+  justify-self: center;
+}
 .service-page-image {
   width: 100%;
   align-items: center;
   height: 100%;
+
   display: flex;
-  align-items: center;
-  position: relative;
+  justify-content: center;
 }
 .service-page-image img {
   width: 100%;
+  border-radius: 10px;
   height: 100%;
+  max-height: 70%;
   object-fit: cover;
 }
 .service-page-data {
@@ -68,12 +61,13 @@
   color: gray;
 }
 .booked {
-  background-color: red; /* Set the background color to red for booked seats */
+  background-color: #fada5e;
+  color: black; /* Set the background color to red for booked seats */
 }
 .book-btn {
   width: 100%;
   padding: 0px 10px;
-  margin: 0;
+  margin-top: 10px;
   text-align: center;
 }
 .book-btn button {
@@ -81,11 +75,21 @@
   margin: 1px 12px;
 }
 
-.seats-holder{
+.seats-holder {
   width: 100%;
   justify-content: center;
   display: flex;
+}
 
+.car-service-data,
+.booking_info {
+  border: 1px solid #b3b3b3;
+  padding: 10px;
+  background-color: #3a3a3a;
+  border-radius: 20px;
+}
+.booking_info {
+  margin-top: 25px;
 }
 @media only screen and (max-width: 1000px) {
   .service-page {

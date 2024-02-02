@@ -99,14 +99,56 @@
   text-decoration: none;
   font-weight: 500;
 }
-.navigationlink{
+.navigationlink {
   margin: 10px;
   padding: 10px 30px;
   text-decoration: none;
-
-
 }
- 
+.phone-navigation {
+  position: fixed;
+  padding: 10px 3px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  backdrop-filter: blur(10px);
+}
+.bottom-nav-active div {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 2px;
+  background-color: #fada5e;
+  border-radius: 30px;
+  text-decoration: none;
+  color: black;
+  padding: 3px 10px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.bottom-nav-active svg {
+  color: black;
+}
+
+.bottom-nav div {
+  display: flex;
+  align-items: center;
+  fill: #efefef;
+}
+.bottom-nav p {
+  text-decoration: none;
+  display: none;
+}
+.nav-icons {
+  height: 25px;
+  color: #efefef;
+}
 
 @media only screen and (max-width: 700px) {
   .card-content {

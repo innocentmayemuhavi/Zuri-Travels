@@ -30,7 +30,7 @@ import {
 } from "firebase/storage";
 
 import { getAnalytics } from "firebase/analytics";
-import ServiceData from "../../../components/SystemData/ServiceData";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
   authDomain: "superpass-fdeeb.firebaseapp.com",

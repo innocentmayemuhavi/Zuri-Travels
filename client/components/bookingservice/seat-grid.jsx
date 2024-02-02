@@ -31,7 +31,7 @@ const GridComponent = ({ seats, bookedSeats }) => {
         cellId++;
       }
     }
-    console.log(grid);
+
 
     return grid;
   };

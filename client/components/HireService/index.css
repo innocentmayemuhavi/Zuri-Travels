@@ -35,34 +35,43 @@
   cursor: pointer;
 }
 .page-input {
+  margin: 10px 0px;
+  background-color: #1f1f1f;
+  width: 100%;
   display: flex;
   align-items: center;
-  width: 100%;
-  gap: 5px;
-  background-color: #fff;
-  margin: 10px 1px;
+  border-radius: 25px;
+
+  justify-content: space-between;
+  fill: #b3b3b3;
+  padding: 7px 20px;
+  gap: 10px;
 }
-.page-input input{
-  width: 100%;
+.page-input input {
+  background-color: #1f1f1f;
+  padding: 10px 5px;
+  flex-grow: 1;
   outline: none;
-  border:none;
-  padding: 15px;
-  cursor: pointer;
+  border: none;
+  color: #b3b3b3;
+  fill: #b3b3b3;
+  font-size: 16px;
 }
-.page-input label{
+.page-input label {
   width: 150px;
 }
 
 select {
-  border-radius: 10px;
-  width: 100%;
+  background-color: #1f1f1f;
+  padding: 5px 5px;
+  flex-grow: 1;
+  outline: none;
   border: none;
-  cursor: pointer;
-  padding: 3px;
-  padding: 10px 20px;
-  font-weight: 600;
-  height: 50px;
-  background-color: #fff;
+  color: #b3b3b3;
+  text-align: center;
+  fill: #b3b3b3;
+  font-size: 14px;
+  width: 100%;
 }
 select:focus {
   cursor: pointer;
@@ -79,6 +88,7 @@ select:focus {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   min-height: 300px;
+  
   display: flex;
   align-items: center;
 }
@@ -93,24 +103,32 @@ select:focus {
   width: 100%;
   object-fit: cover;
 }
-.inactive{
+.inactive {
   fill: #d1d1d1;
   border: 2px solid gray;
   background-color: gray;
 }
-.inactive:hover{
+.inactive:hover {
   background-color: gray;
   border: 2px solid gray;
   fill: #d1d1d1;
 }
 
-
-.inactive svg:hover,.inactive svg:focus{
+.inactive svg:hover,
+.inactive svg:focus {
   fill: #d1d1d1;
   color: gray;
   background-color: gray;
 }
 
+.page_holder{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
 @media only screen and (max-width: 1000px) {
   .product-body {
     display: grid;
@@ -118,7 +136,7 @@ select:focus {
     margin-top: 60px;
     padding: 2px 2px;
   }
-  .product-image{
+  .product-image {
     max-height: 420px;
   }
   .product-image img {
@@ -129,12 +147,8 @@ select:focus {
   }
 }
 
-
 @media only screen and (max-width: 700px) {
- 
-.product-image{
-  max-height: 392px;
-}
-  
- 
+  .product-image {
+    max-height: 392px;
+  }
 }
