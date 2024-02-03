@@ -152,7 +152,7 @@ const Cart = () => {
         <td>{data.drop_point}</td>
         <td>{data.pick_up}</td>
         {size.width > 600 ? (
-          <td>
+          <td >
             <button
               className="amt-operation button"
               onClick={() => Minus(data.id)}
@@ -187,7 +187,22 @@ const Cart = () => {
             </button>
           </td>
         ) : (
-          <td>
+          <td className="cars-btn-act">
+            <button
+              className="amt-operation button"
+              onClick={() => Minus(data.id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
+              </svg>
+            </button>
+
+            {data.days}
             <button
               className={
                 data.days <= 6
@@ -206,21 +221,7 @@ const Cart = () => {
                 <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
               </svg>
             </button>
-
-            {data.days}
-            <button
-              className="amt-operation button"
-              onClick={() => Minus(data.id)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                width="16"
-                height="16"
-              >
-                <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
-              </svg>
-            </button>
+          
           </td>
         )}
         <td>{Math.round(data.amount * data.days).toLocaleString()}</td>

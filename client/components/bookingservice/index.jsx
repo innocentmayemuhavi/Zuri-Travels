@@ -355,7 +355,7 @@ const BookingService = () => {
                 <select
                   value={serviceData.time}
                   name="time"
-                  onChange={() => handleInputChange(event, { ...serviceData })}
+                  onChange={() => setServiceData((prev) => ({ ...prev, time: event.target.value }))}
                 >
                   <option>Morning: 07:00</option>
                   {serviceData.trips === 3 && <option>AfterNoon: 12:00</option>}

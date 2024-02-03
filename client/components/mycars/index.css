@@ -143,9 +143,15 @@ td a:hover {
   }
 }
 
-td svg{
-  fill:#fff;
+td svg {
+  fill: #fff;
 }
-td a{
+td a {
   color: #d3d3d3;
+}
+.cars-btn-act {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
 }
