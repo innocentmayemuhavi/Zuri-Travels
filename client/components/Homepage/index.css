@@ -38,7 +38,7 @@ main {
 }
 .user_prof_data h3 {
   color: #fada5e;
-font-size: 18px;
+  font-size: 18px;
   margin: 0;
 }
 .user_prof_data p {
@@ -81,6 +81,17 @@ font-size: 18px;
   fill: #b3b3b3;
   padding: 7px 10px;
   gap: 10px;
+  margin: 0px auto;
+  max-width: 1000px;
+}
+.state_message_div {
+  display: flex;
+  gap: 20px;
+  fill: #b3b3b3;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
 }
 .search_input {
   width: 100%;
@@ -142,6 +153,8 @@ font-size: 18px;
   padding: 10px;
   background-color: #3a3a3a;
   border-radius: 20px;
+  max-width: 1600px;
+  margin: 25px auto;
 }
 .brand_header {
   display: flex;
@@ -155,9 +168,10 @@ font-size: 18px;
   font-size: 20px;
   font-weight: 700;
 }
-.button_yellow {
-  border: 1.5px solid #fada5e;
-  color: #fada5e;
+.button {
+  border-radius: 10px;
+  border: 1px solid #b3b3b3;
+  color: aliceblue;
 }
 .companies-flex {
   display: flex;
@@ -186,7 +200,8 @@ font-size: 18px;
   border-radius: 100%;
 }
 .car-mobile-div {
-  margin-top: 25px;
+  margin: 25px auto;
+  max-width: 1600px;
   border: 1px solid #b3b3b3;
   padding: 10px;
   background-color: #3a3a3a;
@@ -198,10 +213,23 @@ font-size: 18px;
   gap: 10px;
   margin-top: 25px;
 }
+
+.phone-car-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 25px;
+}
+.tab-car-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 25px;
+}
 .car-card {
   color: #b3b3b3;
-  box-shadow: inset 0px -1px 1px #fada5e, inset 1px 0px 1px #fada5e,
-    inset -1px 0px 1px #fada5e;
+  box-shadow: inset 0px -1px 1px #808080, inset 1px 0px 1px #808080,
+    inset -1px 0px 1px #808080;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -232,4 +260,10 @@ font-size: 18px;
   margin: 0;
   font-size: 17px;
   font-weight: bold;
+}
+
+@media screen and (min-width: 1000px) {
+  .tab-car-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }

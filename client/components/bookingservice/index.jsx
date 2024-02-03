@@ -149,6 +149,7 @@ const BookingService = () => {
   return (
     <main>
       {showNotification && <Notifications />}
+
       <div className="header-mobile">
         <button className="rounded_button" onClick={() => navigate(-1)}>
           <svg
@@ -161,7 +162,7 @@ const BookingService = () => {
           </svg>
         </button>
         <h2>Car Hire</h2>
-        <button className="rounded_button" >
+        <button className="rounded_button">
           <img src="/images/Untitled (4).png" height={35} width={35} />
         </button>
       </div>
@@ -258,12 +259,12 @@ const BookingService = () => {
             </div>
 
             <div className="book-btn">
-              <button onClick={() => navigate(-1)} className="button_yellow">
+              <button onClick={() => navigate(-1)} className="button">
                 Cancel
               </button>
               <button
                 onClick={() => handleBooking(serviceData.id)}
-                className="button_yellow"
+                className="button"
               >
                 Book
               </button>

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="./src/Assets/styles/index.css" />
+    <link rel="manifest" href="./manifest.json" />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./images/log0.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,5 +11,19 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/components/Main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./serviceWorker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+    
   </body>
 </html>

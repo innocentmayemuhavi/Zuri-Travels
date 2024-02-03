@@ -105,6 +105,7 @@
   text-decoration: none;
 }
 .phone-navigation {
+  transition: 0.8s;
   position: fixed;
   padding: 10px 3px;
   border-top-left-radius: 7px;
@@ -120,6 +121,7 @@
   backdrop-filter: blur(10px);
 }
 .bottom-nav-active div {
+  transition: 0.8s;
   display: flex;
   align-items: center;
   font-size: 12px;
