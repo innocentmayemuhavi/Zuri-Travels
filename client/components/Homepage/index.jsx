@@ -13,6 +13,8 @@ import { carCompanies } from "../SystemData/ServiceData";
 import { useNavigate } from "react-router-dom";
 
 import useScreenSize from "../utils/screensize";
+import { CarHireCard } from "../Cards/hire";
+import { CarBookingCard } from "../Cards/booking";
 const HomeMobile = () => {
   const { user, cars } = useContext(FirebaseContext);
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const HomeMobile = () => {
     {
       svg: <FontAwesomeIcon icon={faCarOn} color="#fada5e" />,
       name: "Hire Car",
-      route: "/carbooking",
+      route: "/carhire",
     },
     {
       svg: <FontAwesomeIcon icon={faCar} color="#fada5e" />,
@@ -62,43 +64,13 @@ const HomeMobile = () => {
   ));
   let size = useScreenSize();
   const popularRender = filterdPopular.map((data) => (
-    <div className="car-card" key={data.id}>
-      <div className="car-card-picture">
-        <img src={data.picture} alt={data.name} />
-      </div>
-
-      <p className="car-card-name">{data.name}</p>
-      <p className="car-card-desc">{data.description.slice(0, 25) + "..."}</p>
-      <p className="car-card-price">
-        Ksh. {parseInt(data.price).toLocaleString()}
-      </p>
-    </div>
+    <CarHireCard {...data} key={data.id} />
   ));
   const hiredRender = filterdHired.map((data) => (
-    <div className="car-card" key={data.id}>
-      <div className="car-card-picture">
-        <img src={data.picture} alt={data.name} />
-      </div>
-
-      <p className="car-card-name">{data.name}</p>
-      <p className="car-card-desc">{data.description.slice(0, 25) + "..."}</p>
-      <p className="car-card-price">
-        Ksh. {parseInt(data.price).toLocaleString()}
-      </p>
-    </div>
+    <CarHireCard {...data} key={data.id} />
   ));
   const bookedRender = filterdBooked.map((data) => (
-    <div className="car-card" key={data.id}>
-      <div className="car-card-picture">
-        <img src={data.picture} alt={data.name} />
-      </div>
-
-      <p className="car-card-name">{data.name}</p>
-      <p className="car-card-desc">{data.description.slice(0, 25) + "..."}</p>
-      <p className="car-card-price">
-        Ksh. {parseInt(data.price).toLocaleString()}
-      </p>
-    </div>
+    <CarBookingCard {...data} key={data.id} />
   ));
 
   return (
@@ -114,7 +86,7 @@ const HomeMobile = () => {
             <p>Welcome back</p>
           </div>
         </div>
-        <button className="rounded_button">
+        <button className="rounded_button" onClick={()=>navigate('/mycars')}>
           <img src="/images/Untitled (4).png" height={35} width={35} />
         </button>
       </div>
@@ -152,7 +124,7 @@ const HomeMobile = () => {
       <div className="car-mobile-div">
         <div className="brand_header">
           <p>Most Popular Cars</p>
-          <button className="button">See all</button>
+          <button className="button" onClick={()=>navigate('/carbooking')}>See all</button>
         </div>
         <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
           {popularRender.length > 0 ? (
@@ -177,7 +149,7 @@ const HomeMobile = () => {
       <div className="car-mobile-div">
         <div className="brand_header">
           <p>Popular Hired Cars</p>
-          <button className="button">See all</button>
+          <button className="button" onClick={()=>navigate('/carhire')}>See all</button>
         </div>
         <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
           {hiredRender.length > 0 ? (
@@ -202,7 +174,7 @@ const HomeMobile = () => {
       <div className="car-mobile-div">
         <div className="brand_header">
           <p>Popular Booked Cars</p>
-          <button className="button">See all</button>
+          <button className="button" onClick={()=>navigate('/carbooking')}>See all</button>
         </div>
         <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
           {bookedRender.length > 0 ? (

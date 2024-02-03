@@ -25,7 +25,7 @@
   object-fit: fill;
 }
 .service-page-data {
-  padding: 20px;
+  /* padding: 20px; */
   text-transform: capitalize;
 }
 .grid-cell {
@@ -78,15 +78,20 @@
   justify-content: center;
   display: flex;
 }
+.product{
 
+}
 .car-service-data,
-.booking_info {
+.hire_info,
+.booking_info,
+.ticket_info {
   border: 1px solid #b3b3b3;
   padding: 10px;
   background-color: #3a3a3a;
   border-radius: 20px;
 }
-.booking_info {
+.booking_info,
+.hire_info,.ticket_info {
   margin-top: 25px;
 }
 @media only screen and (max-width: 1000px) {
@@ -94,7 +99,7 @@
     padding: 2px 5px;
   }
   .service-page-section {
-    grid-template: auto auto / repeat(1, 1fr);
+    grid-template:  repeat(1, 1fr);
   }
 }
 
@@ -110,4 +115,7 @@
   .book-btn button {
     margin: 3px 2px;
   }
+}
+.product{
+  width: 100%;
 }

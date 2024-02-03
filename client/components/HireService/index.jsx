@@ -6,18 +6,23 @@ import { Header } from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import Loading from "../Loading";
+import { Notifications } from "../notification/Notification";
 const HireService = () => {
   const navigate = useNavigate();
-  const { setShowNotification, setNotification, productData, setProductData } =
-    useContext(AuthContext);
-  
+  const {
+    setShowNotification,
+    setNotification,
+    productData,
+    setProductData,
+    showNotification,
+  } = useContext(AuthContext);
+
   const { Cart, setCart, user, isLoading } = useContext(FirebaseContext);
   const currentDate = new Date().toISOString().split("T")[0];
+  console.log(showNotification);
 
   const Saving = async (id) => {
     const Exists = Cart.cars.find((prev) => prev.id === id);
-  
-    
 
     if (Exists) {
       let filll = Cart.cars.filter((data) => data.id === id);
@@ -78,18 +83,32 @@ const HireService = () => {
         [name]: value,
         status: "Pending",
         uid: user.uid,
-      
       };
     });
   };
 
   return (
-    <>
+    <main>
       {isLoading ? (
         <Loading />
       ) : (
-        <div className=" product fade">
-          <Header />
+        <div className="product fade">
+          <div className="header-mobile">
+            <button className="rounded_button" onClick={() => navigate(-1)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+              </svg>
+            </button>
+            <h2>Details</h2>
+            <button className="rounded_button">
+              <img src="/images/Untitled (4).png" height={35} width={35} />
+            </button>
+          </div>
           <div className="product-body">
             <div className="product-image">
               {" "}
@@ -97,7 +116,8 @@ const HireService = () => {
             </div>
 
             <section className="product-content">
-              <div className="booking-content">
+              <div className="car-service-data">
+                <h4>Car Details</h4>
                 <p>
                   Service:<span className="gray">{productData.name}</span>
                 </p>
@@ -106,6 +126,9 @@ const HireService = () => {
                   <span className="gray">{productData.description}</span>
                 </p>
                 <p>Price/Day:{productData.amount}</p>
+              </div>
+              <div className="hire_info">
+                <h4>Hire Information</h4>
                 <div className="page-input">
                   {" "}
                   <label>Days:</label>
@@ -164,16 +187,26 @@ const HireService = () => {
                     min={currentDate}
                   />
                 </div>
+              </div>
+              {showNotification && <Notifications />}
+              <div className="booking-content">
                 <div className="product-buttons">
-                  <button onClick={() => navigate(-1)}>Cancel</button>
-                  <button onClick={() => Saving(productData.id)}>HIRE</button>
+                  <button onClick={() => navigate(-1)} className="button">
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => Saving(productData.id)}
+                    className="button"
+                  >
+                    HIRE
+                  </button>
                 </div>
               </div>
             </section>
           </div>
         </div>
       )}
-    </>
+    </main>
   );
 };
 

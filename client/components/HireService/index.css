@@ -1,7 +1,6 @@
 .product-body {
   display: grid;
   grid-template: auto auto / repeat(2, 1fr);
-  margin-top: 60px;
   padding: 2px 10%;
   gap: 20px;
 }
@@ -83,22 +82,21 @@ select:focus {
 }
 
 .product-image {
-  background-color: ghostwhite;
   width: 100%;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-radius: 10px;
   min-height: 300px;
-  
+
   display: flex;
   align-items: center;
 }
 .booking-content {
   margin: 3px 12px;
   padding: 2px;
-
   align-items: center;
 }
 .product-image img {
+  max-height: 70%;
+  border-radius: 10px;
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -121,26 +119,26 @@ select:focus {
   background-color: gray;
 }
 
-.page_holder{
+.page_holder {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 20px;
-
 }
 @media only screen and (max-width: 1000px) {
   .product-body {
     display: grid;
     grid-template: auto auto / repeat(1, 1fr);
-    margin-top: 60px;
+
     padding: 2px 2px;
   }
   .product-image {
+    border-radius: 10px;
     max-height: 420px;
   }
   .product-image img {
-    object-fit: contain;
+    border-radius: 10px;
+    object-fit: cover;
   }
   .product-buttons button {
     min-width: 140px;
@@ -149,6 +147,8 @@ select:focus {
 
 @media only screen and (max-width: 700px) {
   .product-image {
+    border-radius: 10px;
+
     max-height: 392px;
   }
 }

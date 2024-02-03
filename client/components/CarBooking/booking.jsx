@@ -4,9 +4,11 @@ import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import { useState } from "react";
 import { CarBookingCard } from "../Cards/booking";
 import useScreenSize from "../utils/screensize";
+import { useNavigate } from "react-router-dom";
 const CarBookingPage = () => {
   const { cars } = useContext(FirebaseContext);
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   const filterCoach = Object.values(cars).filter(
     (data) => data.category === "coach"
@@ -26,7 +28,7 @@ const CarBookingPage = () => {
   return (
     <main>
       <div className="header-mobile">
-        <button className="rounded_button">
+        <button className="rounded_button" onClick={() => navigate(-1)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"

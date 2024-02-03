@@ -4,8 +4,8 @@
 .service-page-header {
   background-color: #fff;
   width: 100%;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   justify-content: space-between;
   height: 50px;
 }
@@ -30,7 +30,7 @@
   object-fit: cover;
 }
 .service-page-data {
-  padding: 20px;
+  /* padding: 20px; */
   text-transform: capitalize;
 }
 .c-d {

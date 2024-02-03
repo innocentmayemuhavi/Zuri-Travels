@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
@@ -7,12 +7,17 @@ import { Footer } from "../footer/Footer";
 import { Button } from "../Button/Index";
 import Loading from "../Loading";
 import "./index.css";
+import useScreenSize from "../utils/screensize";
 
 const Cart = () => {
   const { setProductData, isLoading, setisLoading, setServiceData } =
     useContext(AuthContext);
+
   const { Cart, setCart } = useContext(FirebaseContext);
   const navigate = useNavigate();
+  const [tab, setTab] = useState(0);
+
+  const size=useScreenSize()
 
   const systemDataUpdate = async () => {
     await setCart((prev) => {
@@ -146,35 +151,78 @@ const Cart = () => {
 
         <td>{data.drop_point}</td>
         <td>{data.pick_up}</td>
-        <td>
-          <button className="amt-operation" onClick={() => Minus(data.id)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              width="16"
-              height="16"
+        {size.width > 600 ? (
+          <td>
+            <button
+              className="amt-operation button"
+              onClick={() => Minus(data.id)}
             >
-              <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
-            </svg>
-          </button>
-          {data.days}
-          <button
-            className={
-              data.days <= 6 ? "amt-operation" : "amt-operation inactive"
-            }
-            onClick={() => Add(data.id)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              width="16"
-              height="16"
-              className="sf"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
+              </svg>
+            </button>
+            {data.days}
+            <button
+              className={
+                data.days <= 6
+                  ? "amt-operation button"
+                  : "amt-operation inactive button"
+              }
+              onClick={() => Add(data.id)}
             >
-              <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
-            </svg>
-          </button>
-        </td>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                className="sf"
+              >
+                <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
+              </svg>
+            </button>
+          </td>
+        ) : (
+          <td>
+            <button
+              className={
+                data.days <= 6
+                  ? "amt-operation button"
+                  : "amt-operation inactive button"
+              }
+              onClick={() => Add(data.id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                className="sf"
+              >
+                <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
+              </svg>
+            </button>
+
+            {data.days}
+            <button
+              className="amt-operation button"
+              onClick={() => Minus(data.id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
+              </svg>
+            </button>
+          </td>
+        )}
         <td>{Math.round(data.amount * data.days).toLocaleString()}</td>
 
         <td className="order-status-td">
@@ -262,7 +310,22 @@ const Cart = () => {
 
   return (
     <main className="fade">
-      <Header />
+      <div className="header-mobile">
+        <button className="rounded_button" onClick={() => navigate(-1)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+          >
+            <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+          </svg>
+        </button>
+        <h2>My Cars</h2>
+        <button className="rounded_button">
+          <img src="/images/Untitled (4).png" height={35} width={35} />
+        </button>
+      </div>
       <section className="Cart  ">
         <div className="cart-header">
           {" "}
@@ -271,7 +334,33 @@ const Cart = () => {
         </div>
 
         <hr />
-        {Cart.cars.length > 0 && (
+        <div className="bucket-nav">
+          <button
+            className="button"
+            style={{
+              backgroundColor: "#21262d",
+              border: tab === 0 && ` ${3}px solid white`,
+            }}
+            onClick={() => {
+              setTab(0);
+            }}
+          >
+            Hires
+          </button>
+          <button
+            className="button"
+            style={{
+              backgroundColor: "#21262d",
+              border: tab === 1 && ` ${3}px solid white`,
+            }}
+            onClick={() => {
+              setTab(1);
+            }}
+          >
+            Bookings
+          </button>
+        </div>
+        {tab === 0 ? (
           <div className="hire-cart">
             <h2>Hired Cars</h2>
 
@@ -286,49 +375,49 @@ const Cart = () => {
               </svg>
               <p> Car Will Be Picked and Returned To Drop Point</p>
             </div>
-          <div className="table-holder">
-          <table>
-              <thead>
-                <th>Car Image</th>
-                <th>Name</th>
-                <th>Drop point</th>
-                <th>Pick-Up Date</th>
-                <th>Days</th>
-                <th>Cost</th>
-                <th>Status</th>
-              </thead>
+            <div className="table-holder">
+              <table>
+                <thead>
+                  <th>Car Image</th>
+                  <th>Name</th>
+                  <th>Drop point</th>
+                  <th>Pick-Up Date</th>
+                  <th>Days</th>
+                  <th>Cost</th>
+                  <th>Status</th>
+                </thead>
 
-              <tbody>{render}</tbody>
-            </table>
-          </div>
+                <tbody>{render}</tbody>
+              </table>
+            </div>
             <p>
               <b>Payout Amount:.</b> Ksh. {Cart.hireAmount.toLocaleString()}
             </p>
           </div>
-        )}
-        {Cart.bookings.length > 0 && (
+        ) : (
           <div className="booking-cart">
             <h2>Booked Cars</h2>
-           <div className="table-holder">
-           <table>
-              <thead>
-                <th>Car Image</th>
-                <th>Name</th>
-                <th>Time</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Cost</th>
-                <th>Status</th>
-              </thead>
+            <div className="table-holder">
+              <table>
+                <thead>
+                  <th>Car Image</th>
+                  <th>Name</th>
+                  <th>Time</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Cost</th>
+                  <th>Status</th>
+                </thead>
 
-              <tbody>{renderbooking}</tbody>
-            </table>
-           </div>
+                <tbody>{renderbooking}</tbody>
+              </table>
+            </div>
             <p>
               <b>Payout Amount:.</b> Ksh. {Cart.bookingsAmount.toLocaleString()}
             </p>
           </div>
         )}
+
         <div className="c-footer">
           {Cart.totalAmount > 0 && (
             <p>
@@ -338,14 +427,18 @@ const Cart = () => {
           )}
           <div>
             <Button
+              class="button"
               text={Cart.totalAmount > 0 ? "Close Cart" : "Hire/Book Cars"}
               onClick={() => navigate("/")}
             />
-            <Button text="Checkout" onClick={() => navigate("/checkout")} />
+            <Button
+              text="Checkout"
+              onClick={() => navigate("/checkout")}
+              class="button"
+            />
           </div>
         </div>
       </section>
-      <Footer />
     </main>
   );
 };

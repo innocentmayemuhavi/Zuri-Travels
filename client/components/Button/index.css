@@ -6,7 +6,7 @@ button{
     border-radius: 9px;
     cursor: pointer;
     margin: 4px;
-    transition: 0.8s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 .btn{
     background-color: aliceblue;

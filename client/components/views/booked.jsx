@@ -85,97 +85,118 @@ const BookedView = () => {
 
   console.log(serviceData);
   return (
-    <main className="service-page">
-      <div></div>
+    <main >
+  
       {showNotification && <Notifications />}
-      <div className="service-page-header">
-        <div>
-          {" "}
+      <div className="product">
+      <div className="header-mobile">
+        <button className="rounded_button" onClick={() => navigate(-1)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            onClick={() => navigate(-1)}
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
           >
-            <path d="M10.78 19.03a.75.75 0 01-1.06 0l-6.25-6.25a.75.75 0 010-1.06l6.25-6.25a.75.75 0 111.06 1.06L5.81 11.5h14.44a.75.75 0 010 1.5H5.81l4.97 4.97a.75.75 0 010 1.06z"></path>
+            <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
           </svg>
-        </div>
-        <div className="trips-tag">
-          <p>{serviceData.trips} Trip(s)/Day</p>
-        </div>
+        </button>
+        <h2>Details</h2>
+        <button className="rounded_button">
+          <img src="/images/Untitled (4).png" height={35} width={35} />
+        </button>
       </div>
       <div className="service-page-section">
-        <div className="service-page-image">
-          <img src={serviceData.picture}></img>
-          <div className="offer-tag">
-            <p>{serviceData.offer} % OFF</p>
-          </div>
+        <div className="product-image">
+          {" "}
+          <img src={serviceData.picture} />
         </div>
         <div className="service-page-data">
-          <div className="c-d">
-            <h3>Bus Name: {serviceData.name}</h3>
-            <h3>
-              Price:<span>{Math.round(serviceData.cost).toLocaleString()}</span>{" "}
+          <div className="car-service-data">
+            <div>
+              <h4>Ticket Details</h4>
               <p>
-                Now:
-                {Math.round(
-                  serviceData.cost -
-                    serviceData.cost * (serviceData.offer * 0.01)
-                ).toLocaleString()}
+                Car Name: <span>{serviceData.name}</span>
               </p>
-            </h3>
-          </div>
-          <div className="page-input">
-            <label>From:</label>
-            <select value={serviceData.from} name="from">
-              <option>{serviceData.from}</option>
-            </select>
-          </div>
 
-          <div className="page-input">
-            <label>To:</label>
-            <select value={serviceData.to} name="to">
-              <option>{serviceData.to}</option>
-            </select>
+              <p>
+                Booking cost: Ksh.{" "}
+                <span>{parseInt(serviceData.price).toLocaleString()}</span>
+              </p>
+              <p>
+                Discount: <span>{serviceData.offer} %</span>
+              </p>
+              <p>
+                New booking cost: Ksh.{" "}
+                <span>
+                  {Math.round(
+                    serviceData.cost -
+                      serviceData.cost * (serviceData.offer * 0.01)
+                  ).toLocaleString()}
+                </span>
+              </p>
+            </div>
           </div>
-          <div className="page-input">
-            <label>Seat:</label>
-            <select value={serviceData.seat} name="seat">
-              <option>{serviceData.seat}</option>
-            </select>
+          <div className="ticket_info">
+            <h4>Booking data</h4>
+            <div className="page-input">
+              <label>From:</label>
+              <select value={serviceData.from} name="from">
+                <option>{serviceData.from}</option>
+              </select>
+            </div>
+
+            <div className="page-input">
+              <label>To:</label>
+              <select value={serviceData.to} name="to">
+                <option>{serviceData.to}</option>
+              </select>
+            </div>
+            <div className="page-input">
+              <label>Seat:</label>
+              <select value={serviceData.seat} name="seat">
+                <option>{serviceData.seat}</option>
+              </select>
+            </div>
+            <div className="page-input">
+              <label>Time:</label>
+              <select value={serviceData.time} name="time">
+                <option>
+                  {serviceData.time} {serviceData.trip}
+                </option>
+              </select>
+            </div>
+            <div className="order-status-div">
+              <label>Status:</label>
+              <div
+                className="order-status"
+                style={{
+                  color: "black",
+                  background:
+                    serviceData.status === "Pending"
+                      ? "red"
+                      : serviceData.status === "Approved"
+                      ? "green"
+                      : "grey",
+                }}
+              >
+                {serviceData.status}
+              </div>
+            </div>
           </div>
-          <div className="page-input">
-            <label>Time:</label>
-            <select value={serviceData.time} name="time">
-              <option>{serviceData.time}</option>
-            </select>
-          </div>
-          <div className="order-status-div">
-                  <label>Status:</label>
-                  <div
-                    className="order-status"
-                    style={{
-                      color: "black",
-                      background:
-                        serviceData.status === "Pending"
-                          ? "red"
-                          : serviceData.status === "Approved"
-                          ? "green"
-                          : "grey",
-                    }}
-                  >
-                    {serviceData.status}
-                  </div>
-                </div>
           <div className="book-btn">
-            <button onClick={() => navigate(-1)}>back</button>
-            <button onClick={() => DeletingFromBooking(serviceData.id)}>
+            <button onClick={() => navigate(-1)} className="button">
+              back
+            </button>
+            <button
+              onClick={() => DeletingFromBooking(serviceData.id)}
+              className="button"
+            >
               Remove
             </button>
           </div>
         </div>
         <div className="card_footer"></div>
+      </div>
       </div>
     </main>
   );

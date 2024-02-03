@@ -4,6 +4,7 @@ import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import { useState } from "react";
 import { CarHireCard } from "../Cards/hire";
 import useScreenSize from "../utils/screensize";
+import { useNavigate } from "react-router-dom";
 const CarHirePage = () => {
   const { cars } = useContext(FirebaseContext);
   const [searchValue, setSearchValue] = useState("");
@@ -11,6 +12,8 @@ const CarHirePage = () => {
   const filterCoach = Object.values(cars).filter(
     (data) => data.category === "coach"
   );
+
+  const navigate = useNavigate();
   const filterdCars = Object.values(cars).filter(
     (data) =>
       data.category.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -26,7 +29,7 @@ const CarHirePage = () => {
   return (
     <main>
       <div className="header-mobile">
-        <button className="rounded_button">
+        <button className="rounded_button" onClick={() => navigate(-1)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -66,19 +69,21 @@ const CarHirePage = () => {
           <path d="M2.75 6a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75ZM6 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H6.75a.75.75 0 0 1-.75-.75Zm4 4.938a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
         </svg>
       </div>
-     <div>
-     <div className="car-mobile-div">
-        <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
-          {carsRender.length > 0 ? (
-            carsRender
-          ) : (
-            <div className="no-car">
-              <p>No cars available</p>
-            </div>
-          )}
+      <div>
+        <div className="car-mobile-div">
+          <div
+            className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}
+          >
+            {carsRender.length > 0 ? (
+              carsRender
+            ) : (
+              <div className="no-car">
+                <p>No cars available</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-     </div>
       <BottomNav />
     </main>
   );

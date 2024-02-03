@@ -1,5 +1,5 @@
 import {CarHirePage} from "../CarHirePage/carhire";
-import {CarBookingPage} from "../Travelingpage/booking";
+import {CarBookingPage} from "../CarBooking/booking";
 import { Home } from "../Homepage/Home";
 
 import {
@@ -26,7 +26,7 @@ import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import Login from "../auth/login";
 import { SignUp } from "../auth/signup";
 import { ResetPassword } from "../auth/resetpassword";
-import { Cart } from "../mycars/Cart";
+import { Cart } from "../mycars/mycars";
 import Loading from "../Loading";
 import BookedView from "../views/booked";
 import { HiredView } from "../views/hired";

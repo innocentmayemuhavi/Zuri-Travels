@@ -15,6 +15,12 @@ table {
 .amt-operation svg:hover {
   fill: #fff;
 }
+.amt-operation {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  fill: #fff;
+}
 .Cart {
   padding-top: 2px;
 }
@@ -85,9 +91,6 @@ td a:hover {
   font-weight: 700;
 }
 @media only screen and (max-width: 1000px) {
-  .Cart {
-    padding-top: 65px;
-  }
   .amt-operation {
     padding: 7px;
     margin: 5px;
@@ -111,15 +114,23 @@ td a:hover {
   justify-content: center;
   align-items: center;
 }
-.table-holder{
+.table-holder {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
 }
+
+.bucket-nav {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  color: #fff;
+}
+.bucket-nav button {
+  min-width: 150px;
+  color: #d3d3d3;
+}
 @media only screen and (max-width: 700px) {
-  .Cart {
-    padding-top: 65px;
-  }
   .amt-operation {
     padding: 3px;
     margin: 2px;
@@ -130,4 +141,11 @@ td a:hover {
   td {
     font-size: 13px;
   }
+}
+
+td svg{
+  fill:#fff;
+}
+td a{
+  color: #d3d3d3;
 }
