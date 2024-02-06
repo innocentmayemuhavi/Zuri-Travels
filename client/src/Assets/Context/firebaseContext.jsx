@@ -70,8 +70,13 @@ const FirebaseProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
       try {
-      
         setUser(userData);
+        userData.getIdToken().then((idToken) => {
+          // The ID token you need.
+          setUser((prev) => {
+            return { ...prev, token: idToken };
+          });
+        });
         const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
 
         if (userData) {
@@ -165,16 +170,13 @@ const FirebaseProvider = ({ children }) => {
   };
   const uploadCar = async () => {
     try {
-     
       if (Object.values(cars).length > 1) {
         const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
 
         await updateDoc(docRef1, {
           cars: cars,
         });
-    
       }
-   
     } catch (error) {
       setIsLoading(false);
       console.log(error);

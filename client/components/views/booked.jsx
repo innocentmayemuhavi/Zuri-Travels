@@ -83,7 +83,7 @@ const BookedView = () => {
     navigate(-1);
   };
 
-  console.log(serviceData);
+
   return (
     <main>
       {showNotification && <Notifications />}

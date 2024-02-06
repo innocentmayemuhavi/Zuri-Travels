@@ -83,10 +83,15 @@ table {
   gap: 10px;
   justify-content: center;
 }
+.checkout-page {
+  margin: 0 10%;
+  max-width: 1600px;
+  padding: 1px 3px;
+}
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   .checkout-page {
-    padding-top: 60px;
+    margin: 0;
   }
 }
 

@@ -51,7 +51,7 @@ const CreditCard = () => {
     console.log(data);
   };
   return (
-    <>
+    <div className="product-body">
       <div
         className="credit-card-div"
         onClick={() => {
@@ -165,119 +165,134 @@ const CreditCard = () => {
           </div>
         )}
       </div>
-      <form className="card-form" onSubmit={submit}>
-        <label>Name:</label>
+      <div className="hire_info">
+        <form className="card-form" onSubmit={submit}>
+          <div className="page-input1">
+            <label>Name:</label>
 
-        <input
-          type="text"
-          name="name"
-          required={true}
-          placeholder={user.displayName ?? "Name On Card"}
-          onChange={handleChange}
-          onFocus={() => {
-            setTab(1);
-            document
-              .querySelector(".credit-card-div")
-              .classList.remove("credit-card-div-hover");
-            setIsFront(true);
-          }}
-        ></input>
-        <label>Card Number</label>
-        <input
-          placeholder="Card Number"
-          type="number"
-          required={true}
-          name="cardNumber"
-          onChange={handleChange}
-          onFocus={() => {
-            setTab(0);
-            document
-              .querySelector(".credit-card-div")
-              .classList.remove("credit-card-div-hover");
-            setIsFront(true);
-          }}
-        ></input>
-        <label>Expiration Date:</label>
-        <div className="form-split">
-          <div className="form-exp-date">
-            <select
-              required={true}
-              name="month"
-              onChange={handleChange}
-              onFocus={() => {
-                setTab(2);
-                document
-                  .querySelector(".credit-card-div")
-                  .classList.remove("credit-card-div-hover");
-                setIsFront(true);
-              }}
-            >
-              <option selected disabled>
-                Month
-              </option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-            </select>
-
-            <select
-              required={true}
-              name="year"
-              onChange={handleChange}
-              onFocus={() => {
-                setTab(2);
-                document
-                  .querySelector(".credit-card-div")
-                  .classList.remove("credit-card-div-hover");
-                setIsFront(true);
-              }}
-            >
-              <option selected disabled>
-                Year
-              </option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              <option>2026</option>
-              <option>2027</option>
-              <option>2028</option>
-              <option>2029</option>
-              <option>2030</option>
-              <option>2031</option>
-              <option>2032</option>
-            </select>
-          </div>
-          <div className="cvv">
-            <label>CVV</label>
             <input
-              placeholder="CVV"
-              maxLength={3}
-              type="number"
-              name="cvv"
+              type="text"
+              name="name"
               required={true}
+              placeholder={user.displayName ?? "Name On Card"}
               onChange={handleChange}
               onFocus={() => {
+                setTab(1);
                 document
                   .querySelector(".credit-card-div")
-                  .classList.add("credit-card-div-hover");
-                setIsFront(false);
+                  .classList.remove("credit-card-div-hover");
+                setIsFront(true);
               }}
             ></input>
           </div>
-        </div>
+          <div className="page-input1">
+            <label>Card Number</label>
+            <input
+              placeholder="Card Number"
+              type="number"
+              required={true}
+              name="cardNumber"
+              onChange={handleChange}
+              onFocus={() => {
+                setTab(0);
+                document
+                  .querySelector(".credit-card-div")
+                  .classList.remove("credit-card-div-hover");
+                setIsFront(true);
+              }}
+            ></input>
+          </div>
 
-        <button type="submit">Pay</button>
-      </form>
-    </>
+          <div className="form-split">
+            <div className=" ">
+              <div className="page-input">
+                <label>Expiration Date:</label>
+                <div className="form-exp-date">
+                  <select
+                    required={true}
+                    name="month"
+                    onChange={handleChange}
+                    onFocus={() => {
+                      setTab(2);
+                      document
+                        .querySelector(".credit-card-div")
+                        .classList.remove("credit-card-div-hover");
+                      setIsFront(true);
+                    }}
+                  >
+                    <option selected disabled>
+                      Month
+                    </option>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                  </select>
+
+                  <select
+                    required={true}
+                    name="year"
+                    onChange={handleChange}
+                    onFocus={() => {
+                      setTab(2);
+                      document
+                        .querySelector(".credit-card-div")
+                        .classList.remove("credit-card-div-hover");
+                      setIsFront(true);
+                    }}
+                  >
+                    <option selected disabled>
+                      Year
+                    </option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                    <option>2028</option>
+                    <option>2029</option>
+                    <option>2030</option>
+                    <option>2031</option>
+                    <option>2032</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="cvv">
+              <div className="page-input1">
+                <label>CVV</label>
+                <input
+                  placeholder="CVV"
+                  maxLength={3}
+                  type="number"
+                  name="cvv"
+                  required={true}
+                  onChange={handleChange}
+                  onFocus={() => {
+                    document
+                      .querySelector(".credit-card-div")
+                      .classList.add("credit-card-div-hover");
+                    setIsFront(false);
+                  }}
+                ></input>
+              </div>
+            </div>
+          </div>
+
+          <button className="button" type="submit">
+            Pay
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

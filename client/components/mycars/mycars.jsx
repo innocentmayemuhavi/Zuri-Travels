@@ -17,7 +17,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [tab, setTab] = useState(0);
 
-  const size=useScreenSize()
+  const size = useScreenSize();
 
   const systemDataUpdate = async () => {
     await setCart((prev) => {
@@ -152,7 +152,7 @@ const Cart = () => {
         <td>{data.drop_point}</td>
         <td>{data.pick_up}</td>
         {size.width > 600 ? (
-          <td >
+          <td>
             <button
               className="amt-operation button"
               onClick={() => Minus(data.id)}
@@ -221,7 +221,6 @@ const Cart = () => {
                 <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
               </svg>
             </button>
-          
           </td>
         )}
         <td>{Math.round(data.amount * data.days).toLocaleString()}</td>
@@ -327,7 +326,7 @@ const Cart = () => {
           <img src="/images/Untitled (4).png" height={35} width={35} />
         </button>
       </div>
-      <section className="Cart  ">
+      <section className="checkout-page">
         <div className="cart-header">
           {" "}
           <p>My Cars</p>
@@ -432,11 +431,13 @@ const Cart = () => {
               text={Cart.totalAmount > 0 ? "Close Cart" : "Hire/Book Cars"}
               onClick={() => navigate("/")}
             />
-            <Button
-              text="Checkout"
-              onClick={() => navigate("/checkout")}
-              class="button"
-            />
+            {Cart.totalAmount > 0 && (
+              <Button
+                text="Checkout"
+                onClick={() => navigate("/checkout")}
+                class="button"
+              />
+            )}
           </div>
         </div>
       </section>

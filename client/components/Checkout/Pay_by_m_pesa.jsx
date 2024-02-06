@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const Pay_By_Mpesa = () => {
   const [Details, setdetails] = useState({});
+
+  const { Cart } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const Check = (event) => {
     const { name, value } = event.target;
@@ -13,7 +16,7 @@ const Pay_By_Mpesa = () => {
 
   const submit = (event) => {
     event.preventDefault();
-    console.log(Details);
+
     navigate("/receipt");
   };
 
@@ -24,34 +27,14 @@ const Pay_By_Mpesa = () => {
       <section className="payment-modal-input">
         <fieldset className="payment-modal-input">
           <legend>Payment Details</legend>
-          <label>Phone Number:</label>
-          <input
-            type={"number"}
-            required={true}
-            name="phone"
-            onChange={Check}
-            maxLength={14}
-          />
-          <label>user Name:</label>
-          <input
-            type={"text"}
-            required={true}
-            name={"username"}
-            onChange={Check}
-            maxLength={20}
-          />
-          <label>User Id Number:</label>
-          <input
-            type={"number"}
-            required={true}
-            name="userid"
-            onChange={Check}
-            maxLength={6}
-          />
+          <div></div>
+          <div>
+            Amount To Pay: Ksh. {parseInt(Cart.totalAmount).toLocaleString()}
+          </div>
         </fieldset>
       </section>
       <div className="form-button">
-        <button>Submit</button>
+        <button className="button">Submit</button>
       </div>
     </form>
   );

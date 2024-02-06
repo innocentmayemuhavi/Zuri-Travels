@@ -66,12 +66,27 @@ const HiredView = () => {
   };
 
   return (
-    <>
+    <main>
       {isLoading ? (
         <Loading />
       ) : (
         <div className=" product fade">
-          <Header />
+          <div className="header-mobile">
+            <button className="rounded_button" onClick={() => navigate(-1)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+              </svg>
+            </button>
+            <h2>Hired Car Details</h2>
+            <button className="rounded_button">
+              <img src="/images/Untitled (4).png" height={35} width={35} />
+            </button>
+          </div>
           <div className="product-body">
             <div className="product-image">
               {" "}
@@ -79,15 +94,21 @@ const HiredView = () => {
             </div>
 
             <section className="product-content">
-              <div className="booking-content">
+              <div className="car-service-data">
+                <h4>Hired Car Details</h4>
                 <p>
-                  Service:<span className="gray">{productData.name}</span>
+                  Name: <span className="gray">{productData.name}</span>
                 </p>
                 <p>
                   Description:
                   <span className="gray">{productData.description}</span>
                 </p>
-                <p>Price/Day:{productData.amount}</p>
+                <p>
+                  Price/Day:Ksh. {parseInt(productData.amount).toLocaleString()}
+                </p>
+              </div>
+              <div className="ticket_info">
+                <h4>Hire Details</h4>
                 <div className="page-input">
                   {" "}
                   <label>Days:</label>
@@ -132,9 +153,16 @@ const HiredView = () => {
                     {productData.status}
                   </div>
                 </div>
+              </div>
+              <div className="booking-content">
                 <div className="product-buttons">
-                  <button onClick={() => navigate(-1)}>Cancel</button>
-                  <button onClick={() => DeletingFromHired(productData.id)}>
+                  <button className="button" onClick={() => navigate(-1)}>
+                    Cancel
+                  </button>
+                  <button
+                    className="button"
+                    onClick={() => DeletingFromHired(productData.id)}
+                  >
                     remove
                   </button>
                 </div>
@@ -143,7 +171,7 @@ const HiredView = () => {
           </div>
         </div>
       )}
-    </>
+    </main>
   );
 };
 
