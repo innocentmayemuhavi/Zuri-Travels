@@ -17,7 +17,8 @@ const HireService = () => {
     showNotification,
   } = useContext(AuthContext);
 
-  const { Cart, setCart, user, isLoading } = useContext(FirebaseContext);
+  const { Cart, setCart, user, isLoading, updateHistory, setUser } =
+    useContext(FirebaseContext);
   const currentDate = new Date().toISOString().split("T")[0];
   console.log(showNotification);
 
@@ -41,12 +42,16 @@ const HireService = () => {
       setShowNotification(true);
     } else {
       const newOrder = Cart.cars.slice();
-
+      const newHist = user.history.slice();
+      newHist.unshift({
+        data: `You have hired ${productData.name} for ${productData.days} days`,
+      });
       newOrder.push(productData);
       const hireAmount = newOrder.reduce((prev, current) => {
         return prev + current.amount * current.days;
       }, 0);
 
+   
       if (user.isLisenceAuthenticated) {
         await setCart((prev) => {
           return {
@@ -71,6 +76,7 @@ const HireService = () => {
       });
 
       setShowNotification(true);
+      updateHistory(newHist);
     }
   };
 
@@ -105,9 +111,9 @@ const HireService = () => {
               </svg>
             </button>
             <h2>Details</h2>
-            <button className="rounded_button">
-              <img src="/images/Untitled (4).png" height={35} width={35} />
-            </button>
+            <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+          <img src="images/carticon.png" height={35} width={35} />
+        </div>
           </div>
           <div className="product-body">
             <div className="product-image">

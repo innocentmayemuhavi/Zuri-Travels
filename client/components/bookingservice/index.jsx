@@ -15,7 +15,8 @@ const BookingService = () => {
     showNotification,
   } = useContext(AuthContext);
 
-  const { Cart, setCart, user, setCars, cars } = useContext(FirebaseContext);
+  const { Cart, setCart, user, setCars, cars, setUser, updateHistory } =
+    useContext(FirebaseContext);
   const navigate = useNavigate();
 
   const handleInputChange = (event, data) => {
@@ -54,8 +55,12 @@ const BookingService = () => {
 
       setShowNotification(true);
     } else {
+      const newHistory = user.history.slice();
       const newData = Cart.bookings.slice();
-      newData.push(serviceData);
+      newHistory.unshift({
+        data: `You Booked ${serviceData.name} seat ${serviceData.seat} from ${serviceData.from} to ${serviceData.to} for ${serviceData.time}`,
+      });
+      newData.unshift(serviceData);
       const bookingsAmount = newData.reduce(
         (prev, current) => prev + current.toBePaid,
         0
@@ -64,6 +69,7 @@ const BookingService = () => {
       await setCart((prev) => ({
         ...prev,
         cars: prev.cars,
+        history: newHistory,
         bookings: newData,
         bookingsAmount: bookingsAmount,
         totalAmount: bookingsAmount + prev.hireAmount,
@@ -73,8 +79,6 @@ const BookingService = () => {
         (data) => data.id === id
       )[0].bookedSeats;
       newBookings.push(serviceData.seat);
-
-      console.log(newBookings);
 
       const newData1 = Object.values(cars).map((data) => {
         return data.id === id
@@ -99,6 +103,7 @@ const BookingService = () => {
         </p>
       ));
       setShowNotification(true);
+      updateHistory(newHistory);
     }
   };
   const SeatOptions = ({ seats, bookedSeats }) => {
@@ -163,9 +168,9 @@ const BookingService = () => {
             </svg>
           </button>
           <h2>Car Hire</h2>
-          <button className="rounded_button">
-            <img src="/images/Untitled (4).png" height={35} width={35} />
-          </button>
+          <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+          <img src="images/carticon.png" height={35} width={35} />
+        </div>
         </div>
         <div className="product-body">
           <div className="product-image">

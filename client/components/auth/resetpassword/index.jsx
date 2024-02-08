@@ -54,18 +54,23 @@ const ResetPassword = () => {
           </div>
         ) : (
           <form className="login-form" onSubmit={() => submit(event)}>
-            <h3>Reset Password</h3>
+            <div className="form-label">
+              <h3>Reset Password</h3>
+            </div>
             <hr />
             <p className="warning">{warning}</p>
-            <input
-              type={"email"}
-              placeholder="Enter Email"
-              required={true}
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              name="email"
-            />
+            <div className="page-input">
+              <label>Email</label>
+              <input
+                type={"email"}
+                placeholder="Enter Email"
+                required={true}
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                name="email"
+              />
+            </div>
 
-            <button>Submit</button>
+            <button className="button">Submit</button>
           </form>
         )}
       </main>

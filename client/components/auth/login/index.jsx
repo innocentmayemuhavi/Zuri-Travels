@@ -41,10 +41,14 @@ const Login = () => {
     <>
       <main className="fade login-page">
         <form className="login-form" onSubmit={submit}>
-          <h3>Login</h3>
+         <div className="form-label">
+         <h3>Welcome Back</h3>
+         </div>
           <hr />
           <p className="warning">{warning}</p>
-          <input
+         <div className="page-input">
+          <label>Email</label>
+         <input
             type={"email"}
             placeholder="Enter Email"
             required={true}
@@ -53,7 +57,10 @@ const Login = () => {
             value={data.email}
             onChange={handleData}
           />
-          <input
+         </div>
+        <div className="page-input">
+          <label>Password</label>
+        <input
             type={"password"}
             placeholder="Password"
             required={true}
@@ -61,6 +68,7 @@ const Login = () => {
             value={data.password}
             onChange={handleData}
           />
+        </div>
           <p>
             Don't have account? Click{" "}
             <Link to={"/signup"} onClick={() => setWarning("")}>
@@ -68,7 +76,7 @@ const Login = () => {
             </Link>
           </p>
 
-          <button>
+          <button className="button">
             {isLoading ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"

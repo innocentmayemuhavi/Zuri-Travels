@@ -39,16 +39,16 @@
   width: 100%;
   display: flex;
   align-items: center;
-  border-radius: 25px;
+  border-radius: 17px;
 
   justify-content: space-between;
   fill: #b3b3b3;
-  padding: 7px 20px;
-  gap: 10px;
+  padding: 5px 20px;
+  gap: 2px;
 }
 .page-input input {
   background-color: #1f1f1f;
-  padding: 10px 5px;
+  padding: 7px 5px;
   flex-grow: 1;
   outline: none;
   border: none;
@@ -57,7 +57,7 @@
   font-size: 16px;
 }
 .page-input label {
-  width: 150px;
+  min-width: 70px;
 }
 
 select {

@@ -10,6 +10,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   deleteUser,
+  updatePassword,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -17,6 +18,7 @@ import {
   updateDoc,
   setDoc,
   getDoc,
+  deleteDoc,
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
@@ -54,6 +56,8 @@ const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [cars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
   const [warning, setWarning] = useState("");
   const [profile, setProfile] = useState({
     displayName: "",
@@ -92,6 +96,7 @@ const FirebaseProvider = ({ children }) => {
                 ...prev,
                 phone: doc.data().userdata.phoneNumber,
                 lisence: doc.data().userdata.lisence,
+                history: doc.data().history,
                 isLisenceAuthenticated:
                   doc.data().userdata.isLisenceAuthenticated,
               };
@@ -104,6 +109,7 @@ const FirebaseProvider = ({ children }) => {
             setUser((prev) => {
               return {
                 ...prev,
+                history: doc.data().history,
                 ...doc.data.userdata,
               };
             });
@@ -224,6 +230,28 @@ const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const updateHistory = async (data) => {
+    const uid = auth.currentUser.uid;
+
+    try {
+      const docRef = doc(database, "users", uid);
+
+      await updateDoc(docRef, {
+        history: data,
+      });
+      setUser((prev) => {
+        return {
+          ...prev,
+          history: data,
+        };
+      });
+
+      console.log("History data updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     updateData();
   }, [Cart]);
@@ -314,6 +342,72 @@ const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const updateUserName = async (name) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      setUser((prev) => {
+        return {
+          ...prev,
+          displayName: name,
+        };
+      });
+    } catch (error) {}
+  };
+
+  const updateUserPassword = async (password) => {
+    try {
+      await updatePassword(auth.currentUser, password);
+    } catch (error) {}
+  };
+
+  const updateUserImage = async (url) => {
+    await updateProfile(auth.currentUser, {
+      photoURL: url,
+    });
+
+    setUser((prev) => {
+      return {
+        ...prev,
+        ...auth.currentUser,
+      };
+    });
+    setIsUploading(false);
+    setUploadProgress(0);
+  };
+
+  const handleImage = async (data) => {
+    setIsUploading(true);
+    const imgref = ref(mediaDb, `images/${user.uid}`);
+
+    const upload_pic = uploadBytesResumable(imgref, data);
+
+    upload_pic.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgress(progress);
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {},
+      () => {
+        getDownloadURL(upload_pic.snapshot.ref).then((imageUrl) => {
+          console.log("File available at", imageUrl);
+          updateUserImage(imageUrl);
+        });
+      }
+    );
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -337,6 +431,12 @@ const FirebaseProvider = ({ children }) => {
         getDownloadURL,
         setCars,
         isLoading,
+        updateUserName,
+        updateUserPassword,
+        updateHistory,
+        handleImage,
+        uploadProgress,
+        isUploading,
       }}
     >
       {children}

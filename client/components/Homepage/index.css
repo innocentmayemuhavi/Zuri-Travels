@@ -74,7 +74,7 @@ main {
   color: #242424;
   border: 1px solid #fada5e;
 }
-.rounded_button img{
+.rounded_button img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -250,7 +250,23 @@ main {
   /* border: 1px solid #b3b3b3; */
 }
 
-
+.cart_avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  object-fit: cover;
+  align-self: center;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart_avatar img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
 
 .car-card:hover {
   animation: pulse 1s infinite;
@@ -279,7 +295,7 @@ main {
   font-size: 17px;
   font-weight: bold;
 }
-.rounded_button img{
+.rounded_button img {
   object-fit: cover;
 }
 @media screen and (min-width: 1000px) {

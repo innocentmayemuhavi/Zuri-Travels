@@ -32,13 +32,16 @@ const LisencePage = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="lisence-page">
+        <main className="lisence-page">
           <div className="dialog-header"></div>
           <form className="login-form" onSubmit={submit}>
+            <div className="form-label">
             <h3>Lisence Verification</h3>
+            </div>
             <hr />
             <p className="warning"></p>
-            <label>Enter Email:</label>
+          <div className="page-input">
+          <label>Enter Email:</label>
             <input
               type={"email"}
               placeholder="Enter Email"
@@ -47,23 +50,29 @@ const LisencePage = () => {
               name="email"
               onChange={handleData}
             />
-            <label>ID Number: </label>
+          </div>
+           <div className="page-input">
+           <label>ID Number: </label>
             <input
               type={"number"}
-              placeholder="You Id Number"
+              placeholder="Id Number"
               required={true}
               name="id"
               onChange={handleData}
             />
-            <label>License Number: </label>
+           </div>
+           <div className="page-input">
+           <label>License Number: </label>
             <input
               type={"number"}
-              placeholder="You Id Number"
+              placeholder="Licence Number"
               required={true}
               name="license_number"
               onChange={handleData}
             />
-            <label>Expiring Date:</label>
+           </div>
+           <div className="page-input">
+           <label>Expiring Date:</label>
             <input
               type={"date"}
               placeholder="Expiration Date"
@@ -72,6 +81,7 @@ const LisencePage = () => {
               onChange={handleData}
               min={currentDate}
             />
+           </div>
 
             <div className="page-input">
               <label>Category:</label>
@@ -86,9 +96,9 @@ const LisencePage = () => {
                 <option value={"Catgory G"}>Category G</option>
               </select>
             </div>
-            <button>verify</button>
+            <button className="button">verify</button>
           </form>
-        </div>
+        </main>
       )}
     </>
   );

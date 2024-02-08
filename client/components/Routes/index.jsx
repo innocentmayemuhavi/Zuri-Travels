@@ -1,5 +1,5 @@
-import {CarHirePage} from "../CarHirePage/carhire";
-import {CarBookingPage} from "../CarBooking/booking";
+import { CarHirePage } from "../CarHirePage/carhire";
+import { CarBookingPage } from "../CarBooking/booking";
 import { Home } from "../Homepage/Home";
 
 import {
@@ -31,6 +31,7 @@ import Loading from "../Loading";
 import BookedView from "../views/booked";
 import { HiredView } from "../views/hired";
 import { HomeMobile } from "../Homepage/index";
+import { Account } from "../Account/Account";
 
 const ProtectedRoute = ({ children }) => {
   const { user, isLoading } = useContext(FirebaseContext);
@@ -137,6 +138,14 @@ const AppRoutes = () => {
         }
       />
       <Route path="/resetpassword" element={<ResetPassword />} />
+      <Route
+        path="/account"
+        element={
+          <ProtectedRoute>
+            <Account />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };

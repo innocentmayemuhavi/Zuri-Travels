@@ -78,7 +78,7 @@ const HomeMobile = () => {
       <div className="header-mobile">
         <div className="user_data_div">
           <div className="user_prof">
-            <img src="/images/family-travelling-in-minivan-to-airport-people-on-public-transport-bus-or-van-are-travelling-to-airport-for-vacation-aerodrome-transfer-service-vehi-REMA69.jpg" />
+            <img src={user.photoURL ? user.photoURL : "/images/userprof.png"} />
           </div>
           <div className="user_prof_data">
             <h3>Hello,{user.displayName.slice(0, 10) + "..." ?? "There"}</h3>
@@ -86,9 +86,9 @@ const HomeMobile = () => {
             <p>Welcome back</p>
           </div>
         </div>
-        <button className="rounded_button" onClick={()=>navigate('/mycars')}>
-          <img src="/images/Untitled (4).png" height={35} width={35} />
-        </button>
+        <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+          <img src="images/carticon.png" height={35} width={35} />
+        </div>
       </div>
 
       <div className="search_div">
@@ -124,7 +124,9 @@ const HomeMobile = () => {
       <div className="car-mobile-div">
         <div className="brand_header">
           <p>Most Popular Cars</p>
-          <button className="button" onClick={()=>navigate('/carbooking')}>See all</button>
+          <button className="button" onClick={() => navigate("/carbooking")}>
+            See all
+          </button>
         </div>
         <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
           {popularRender.length > 0 ? (
@@ -149,7 +151,9 @@ const HomeMobile = () => {
       <div className="car-mobile-div">
         <div className="brand_header">
           <p>Popular Hired Cars</p>
-          <button className="button" onClick={()=>navigate('/carhire')}>See all</button>
+          <button className="button" onClick={() => navigate("/carhire")}>
+            See all
+          </button>
         </div>
         <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
           {hiredRender.length > 0 ? (
@@ -174,7 +178,9 @@ const HomeMobile = () => {
       <div className="car-mobile-div">
         <div className="brand_header">
           <p>Popular Booked Cars</p>
-          <button className="button" onClick={()=>navigate('/carbooking')}>See all</button>
+          <button className="button" onClick={() => navigate("/carbooking")}>
+            See all
+          </button>
         </div>
         <div className={size.width <= 1000 ? "phone-car-grid" : "tab-car-grid"}>
           {bookedRender.length > 0 ? (

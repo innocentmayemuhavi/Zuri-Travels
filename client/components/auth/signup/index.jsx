@@ -43,10 +43,14 @@ const SignUp = () => {
     <>
       <main className="fade login-page">
         <form className="login-form" onSubmit={submit}>
-          <h3>Sign Up</h3>
+         <div className="form-label">
+         <h3>Sign Up</h3>
+         </div>
           <hr />
           <p className="warning">{warning}</p>
-          <input
+         <div className="page-input">
+          <label htmlFor="name">User Name</label>
+         <input
             type={"text"}
             placeholder="User Name"
             required={true}
@@ -54,7 +58,10 @@ const SignUp = () => {
             onChange={handleData}
             value={data.name}
           />
-          <input
+         </div>
+        <div className="page-input">
+          <label htmlFor="email">Email</label>
+        <input
             type={"email"}
             placeholder="Email"
             required={true}
@@ -63,7 +70,10 @@ const SignUp = () => {
             onChange={handleData}
             value={data.email}
           />
-          <input
+        </div>
+        <div className="page-input">
+          <label htmlFor="phone">Phone</label>
+        <input
             type={"number"}
             placeholder="Phone Number"
             required={true}
@@ -71,19 +81,23 @@ const SignUp = () => {
             onChange={handleData}
             value={data.phone}
           />
+        </div>
+         <div className="page-input">
+          <label htmlFor="password">Password</label>
           <input
             type={"password"}
             placeholder="Password"
             required={true}
             name="password"
             onChange={handleData}
-            value={data.password}
-          />
+            value={data.password} 
+            />
+         </div>
           <p>
             Already Have An Account? Click <Link to={"/login"}>here</Link>
           </p>
 
-          <button>Sign Up</button>
+          <button className="button">Sign Up</button>
         </form>
       </main>
     </>

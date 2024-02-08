@@ -75,9 +75,9 @@ const Checkout = () => {
               </svg>
             </button>
             <h2>Checkout</h2>
-            <button className="rounded_button">
-              <img src="/images/Untitled (4).png" height={35} width={35} />
-            </button>
+            <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+          <img src="images/carticon.png" height={35} width={35} />
+        </div>
           </div>
           <div className="checkout-page">
             <section className="checkout-modal">

@@ -78,29 +78,32 @@
   justify-content: center;
   display: flex;
 }
-.product{
-
+.product {
 }
 .car-service-data,
 .hire_info,
 .booking_info,
-.ticket_info {
+.ticket_info,
+.account_info {
   border: 1px solid #b3b3b3;
   padding: 10px;
   background-color: #3a3a3a;
   border-radius: 20px;
-  
 }
 .booking_info,
-.hire_info,.ticket_info {
+.hire_info,
+.ticket_info {
   margin-top: 25px;
+}
+.account_info {
+  margin-bottom: 20px;
 }
 @media only screen and (max-width: 1000px) {
   .service-page {
     padding: 2px 5px;
   }
   .service-page-section {
-    grid-template:  repeat(1, 1fr);
+    grid-template: repeat(1, 1fr);
   }
 }
 
@@ -117,6 +120,6 @@
     margin: 3px 2px;
   }
 }
-.product{
+.product {
   width: 100%;
 }
