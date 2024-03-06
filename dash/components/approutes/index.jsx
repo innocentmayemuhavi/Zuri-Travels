@@ -3,8 +3,13 @@ import { DashBoard } from "../dashboad";
 import { Orders } from "../orders";
 import AddingCars from "../addcar";
 import { VehecleManagement } from "../vehiclemanagement";
+import { useContext } from "react";
+import { FirebaseContext } from "../context/firebase";
+import { useEffect } from "react";
 
 const AppRoutes = () => {
+  const { signin } = useContext(FirebaseContext);
+
   return (
     <BrowserRouter>
       <Routes>

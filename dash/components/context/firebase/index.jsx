@@ -161,7 +161,21 @@ const FirebaseProvider = ({ children }) => {
 
     setDocId(uid);
   };
+  const signin = async (email, password) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
 
+     await updateProfile(auth.currentUser, {
+        displayName: "Admin",
+      });
+
+      console.log("signed in");
+      // setWarning("");
+      // setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const updateState1 = async (uid, id) => {
     try {
       const docRef = doc(database, "users", uid);
@@ -265,6 +279,7 @@ const FirebaseProvider = ({ children }) => {
         uploadBytesResumable,
         getDownloadURL,
         setCars,
+        signin,
       }}
     >
       {children}

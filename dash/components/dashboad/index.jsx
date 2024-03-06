@@ -11,7 +11,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 const DashBoard = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const { isLoading, orders } = useContext(FirebaseContext);
+  const { isLoading, orders, signin } = useContext(FirebaseContext);
   const [no, setNo] = useState({
     hires: 0,
     bookings: 0,
@@ -51,8 +51,7 @@ const DashBoard = () => {
     ],
   };
 
-
-  console.log(isLoading)
+  console.log(isLoading);
 
   return (
     <>
@@ -76,9 +75,14 @@ const DashBoard = () => {
           </div>
         </>
       )}
+      {/* <button
+        onClick={() => {
+          signin("admin@gmail.com", "123456");
+        }}
+      >
+        Login
+      </button> */}
     </>
-
-    
   );
 };
 

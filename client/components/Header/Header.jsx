@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import "./index.css";
 import { HeaderNav } from "../QuickNavigation/Headernav";
 import { Phonenav } from "../QuickNavigation/PhoneNav";
-import { useNavigate,NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import useScreenSize from "../utils/screensize";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
@@ -22,7 +22,7 @@ const Header = () => {
     setShowSliderButton,
   } = useContext(AuthContext);
 
-  const{user}=useContext(FirebaseContext)
+  const { user } = useContext(FirebaseContext);
 
   const size = useScreenSize();
   return size.width > 1200 ? (
@@ -32,7 +32,12 @@ const Header = () => {
           <img src={user.photoURL ? user.photoURL : "/images/userprof.png"} />
         </div>
         <div className="user_prof_data">
-          <h3>Hello,{user.displayName.slice(0, 10) + "..." ?? "There"}</h3>
+          <h3>
+            Hello,
+            {user.displayName
+              ? user.displayName.slice(0, 10) + "..." ?? "There"
+              : "There"}
+          </h3>
 
           <p>Welcome back</p>
         </div>
@@ -111,7 +116,12 @@ Add Car
           <img src={user.photoURL ? user.photoURL : "/images/userprof.png"} />
         </div>
         <div className="user_prof_data">
-          <h3>Hello,{user.displayName.slice(0, 10) + "..." ?? "There"}</h3>
+          <h3>
+            Hello,
+            {user.displayName
+              ? user.displayName.slice(0, 10) + "..." ?? "There"
+              : "There"}
+          </h3>
 
           <p>Welcome back</p>
         </div>

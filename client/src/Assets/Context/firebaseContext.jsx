@@ -280,6 +280,7 @@ const FirebaseProvider = ({ children }) => {
               lisence: {},
               isLisenceAuthenticated: false,
             },
+            history: [],
             cart: {
               cars: [],
               bookings: [],
@@ -293,9 +294,11 @@ const FirebaseProvider = ({ children }) => {
       setWarning("");
       setIsLoading(false);
     } catch (e) {
-      const w1 = e.code.split("auth/").join("");
-      const w2 = w1.split("-").join(" ");
-      setWarning(w2);
+      if (e.code) {
+        const w1 = e.code.split("auth/").join("");
+        const w2 = w1.split("-").join(" ");
+        setWarning(w2);
+      }
       setIsLoading(false);
     }
   };

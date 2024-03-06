@@ -169,8 +169,8 @@ const BookingService = () => {
           </button>
           <h2>Car Hire</h2>
           <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-          <img src="images/carticon.png" height={35} width={35} />
-        </div>
+            <img src="images/carticon.png" height={35} width={35} />
+          </div>
         </div>
         <div className="product-body">
           <div className="product-image">

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate ,Navigate} from "react-router-dom";
 import { AuthContext } from "../../../src/Assets/Context";
 import Loading from "../../Loading";
 
@@ -8,7 +8,7 @@ import { FirebaseContext } from "../../../src/Assets/Context/firebaseContext";
 
 const SignUp = () => {
   const { setisLoading, isLoading } = useContext(AuthContext);
-  const { signup, warning } = useContext(FirebaseContext);
+  const { signup, warning,user } = useContext(FirebaseContext);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -32,14 +32,14 @@ const SignUp = () => {
     try {
       await signup(data.email, data.password, data.name, data.phone);
 
-      navigate("/login");
+      // navigate("/login");
       setisLoading(false);
     } catch (e) {
-      console.log(e.code);
+      console.log(e);
     }
   };
 
-  return (
+  return user?<Navigate to='/'/>:
     <>
       <main className="fade login-page">
         <form className="login-form" onSubmit={submit}>
@@ -101,7 +101,7 @@ const SignUp = () => {
         </form>
       </main>
     </>
-  );
+  
 };
 
 export { SignUp };

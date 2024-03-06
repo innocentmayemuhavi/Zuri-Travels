@@ -27,7 +27,6 @@ const HireService = () => {
 
     if (Exists) {
       let filll = Cart.cars.filter((data) => data.id === id);
-      console.log(filll[0].id);
 
       setNotification((prev) => {
         return (
@@ -51,7 +50,6 @@ const HireService = () => {
         return prev + current.amount * current.days;
       }, 0);
 
-   
       if (user.isLisenceAuthenticated) {
         await setCart((prev) => {
           return {
@@ -112,8 +110,8 @@ const HireService = () => {
             </button>
             <h2>Details</h2>
             <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-          <img src="images/carticon.png" height={35} width={35} />
-        </div>
+              <img src="images/carticon.png" height={35} width={35} />
+            </div>
           </div>
           <div className="product-body">
             <div className="product-image">
