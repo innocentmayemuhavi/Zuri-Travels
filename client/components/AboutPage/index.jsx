@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 import { Footer } from "../footer/Footer";
 import { Header } from "../Header/Header";
@@ -16,8 +16,11 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import "./index.css";
+import useScreenSize from "../utils/screensize";
 const About = () => {
   const [index, setindex] = useState(0);
+
+  const navigate = useNavigate();
   const images = [
     "../../../images/modern-bus-design-for-travel-and-tour-with-isolated-background-KPA7R0.jpg",
     "../../../images/taxi-in-the-rain-at-night-cologne-north-rhine-westphalia-germany-DWNMHR.jpg",
@@ -33,14 +36,34 @@ const About = () => {
     "../../../images/london-black-cab-taxi-at-a-pedestrian-crossing-on-greys-inn-road-holborn-KN351W.jpg",
     "../../../images/white-coach-bus-on-the-road-at-summer-KNM886.jpg",
   ];
-
+  const size = useScreenSize();
   return (
     <main className="fade">
-      <Header />
+    <div>
+
+        {size.width > 1200 ? (
+        <Header />
+      ) : (
+        <div className="header-mobile">
+          <button className="rounded_button" onClick={() => navigate(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+            </svg>
+          </button>
+          <h2>About Us</h2>
+          <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+            <img src="images/carticon.png" height={35} width={35} />
+          </div>
+        </div>
+      )}
       <section className="about-page">
-        <h1>About Us...</h1>
-        <div className="about-main">
-          <div className="about-sec-1">
+        <div className="product-body">
+          <div className="section_div">
             <p>
               Super pass travells is a travelling agency that offers travelling
               services in Kenya.
@@ -96,10 +119,10 @@ const About = () => {
             </div>
             <p>Below are some of the servises we offer...</p>
             <Link to="/carhire">
-              <Button text="Car Hire" />
+              <Button text="Car Hire" class="button" />
             </Link>
             <Link to="/carbooking">
-              <Button text="Car Booking" />
+              <Button text="Car Booking" class="button" />
             </Link>
           </div>
           <div>
@@ -112,7 +135,7 @@ const About = () => {
 
                     console.log(images.length, index);
                   }}
-                  className={index < 1 && "inactive"}
+                  className={index < 1 ? "inactive button" : "button"}
                 >
                   prev
                 </button>
@@ -122,7 +145,9 @@ const About = () => {
 
                     console.log(images.length, index);
                   }}
-                  className={index >= images.length - 1 && "inactive"}
+                  className={
+                    index >= images.length - 1 ? "inactive button" : "button"
+                  }
                 >
                   next
                 </button>
@@ -131,6 +156,7 @@ const About = () => {
           </div>
         </div>
       </section>
+    </div>
       <Footer />
     </main>
   );

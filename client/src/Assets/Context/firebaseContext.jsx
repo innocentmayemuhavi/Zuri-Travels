@@ -76,7 +76,6 @@ const FirebaseProvider = ({ children }) => {
       try {
         setUser(userData);
         userData.getIdToken().then((idToken) => {
-          // The ID token you need.
           setUser((prev) => {
             return { ...prev, token: idToken };
           });
@@ -133,7 +132,6 @@ const FirebaseProvider = ({ children }) => {
       }
     });
   }, []);
-
   const signin = async (email, password) => {
     try {
       setIsLoading(true);
@@ -194,7 +192,6 @@ const FirebaseProvider = ({ children }) => {
 
   const updateUser = async (userData) => {
     const uid = auth.currentUser.uid;
-
     try {
       const docRef = doc(database, "users", uid);
       const data = userData;

@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import useScreenSize from "../utils/screensize";
 import { CarHireCard } from "../Cards/hire";
 import { CarBookingCard } from "../Cards/booking";
+import { Footer } from "../footer/Footer";
+import { NavLink } from "react-router-dom";
+import { Header } from "../Header/Header";
 const HomeMobile = () => {
   const { user, cars } = useContext(FirebaseContext);
   const navigate = useNavigate();
@@ -75,22 +78,7 @@ const HomeMobile = () => {
 
   return (
     <main>
-      <div className="header-mobile">
-        <div className="user_data_div">
-          <div className="user_prof">
-            <img src={user.photoURL ? user.photoURL : "/images/userprof.png"} />
-          </div>
-          <div className="user_prof_data">
-            <h3>Hello,{user.displayName.slice(0, 10) + "..." ?? "There"}</h3>
-
-            <p>Welcome back</p>
-          </div>
-        </div>
-        <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-          <img src="images/carticon.png" height={35} width={35} />
-        </div>
-      </div>
-
+      <Header />
       <div className="search_div">
         <div className="search_input">
           <svg
@@ -202,7 +190,8 @@ const HomeMobile = () => {
           )}
         </div>
       </div>
-      <BottomNav />
+      <Footer />
+      {size.width < 1200 && <BottomNav />}
     </main>
   );
 };

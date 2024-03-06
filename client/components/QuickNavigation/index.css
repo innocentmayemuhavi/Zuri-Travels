@@ -103,6 +103,8 @@
   margin: 10px;
   padding: 10px 30px;
   text-decoration: none;
+ color: #fff;
+ border-bottom: 1px solid #efefef;
 }
 .phone-navigation {
   transition: 0.8s;
@@ -162,7 +164,7 @@
 }
 .fade {
   animation-name: fade;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 @keyframes fade {
   from {

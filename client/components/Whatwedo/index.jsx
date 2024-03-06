@@ -13,14 +13,36 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import useScreenSize from "../utils/screensize";
 const WhatWeDo = () => {
   const navigation = useNavigate();
+
+  const size = useScreenSize();
   return (
     <main className="fade">
-      <Header />
+      {size.width > 1200 ? (
+        <Header />
+      ) : (
+        <div className="header-mobile">
+          <button className="rounded_button" onClick={() => navigation(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+            </svg>
+          </button>
+          <h2>What We Do</h2>
+          <div className="cart_avatar" onClick={() => navigation("/mycars")}>
+            <img src="images/carticon.png" height={35} width={35} />
+          </div>
+        </div>
+      )}
 
-      <section className="whatwedo">
-        <div>
+      <section className="product-body">
+        <div className="section_div">
           <h2>What We Do</h2>
           <hr></hr>
           <p>We offer Automotive services in the whole of kenya .</p>

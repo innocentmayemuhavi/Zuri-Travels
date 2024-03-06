@@ -5,10 +5,13 @@ import { useState } from "react";
 import { CarBookingCard } from "../Cards/booking";
 import useScreenSize from "../utils/screensize";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../Header/Header";
 const CarBookingPage = () => {
   const { cars } = useContext(FirebaseContext);
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
+
+
 
   const filterCoach = Object.values(cars).filter(
     (data) => data.category === "coach"
@@ -27,7 +30,7 @@ const CarBookingPage = () => {
   const size = useScreenSize();
   return (
     <main>
-      <div className="header-mobile">
+     {size.width>1200?<Header/>: <div className="header-mobile">
         <button className="rounded_button" onClick={() => navigate(-1)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +45,7 @@ const CarBookingPage = () => {
         <div className="cart_avatar" onClick={() => navigate("/mycars")}>
           <img src="images/carticon.png" height={35} width={35} />
         </div>
-      </div>
+      </div>}
       <div className="search_div">
         <div className="search_input">
           <svg
@@ -91,7 +94,7 @@ const CarBookingPage = () => {
         </div>
       </div>
 
-      <BottomNav />
+      {size.width < 1200 && <BottomNav />}
     </main>
   );
 };

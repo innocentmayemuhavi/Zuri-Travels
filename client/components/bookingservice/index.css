@@ -83,6 +83,7 @@
 .hire_info,
 .booking_info,
 .ticket_info,
+.section_div,
 .account_info {
   border: 1px solid #b3b3b3;
   padding: 10px;
@@ -94,7 +95,7 @@
 .ticket_info {
   margin-top: 25px;
 }
-.account_info {
+.account_info,.section_div {
   margin-bottom: 20px;
 }
 @media only screen and (max-width: 1000px) {

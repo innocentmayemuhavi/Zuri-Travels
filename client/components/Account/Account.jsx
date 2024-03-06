@@ -5,6 +5,8 @@ import "./index.css";
 import { Button } from "../Button/Index";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import { useNavigate } from "react-router-dom";
+import useScreenSize from "../utils/screensize";
+import { Header } from "../Header/Header";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -90,7 +92,6 @@ const Account = () => {
     }
     setPhotoURL(user.photoURL);
   }, [user]);
- 
 
   const renderHistory = (showAll ? history : history.slice(0, 5)).map(
     (item, index) => (
@@ -110,26 +111,33 @@ const Account = () => {
       setShowSuccess(false);
     }, 2000);
   }, [showSuccess, mesage]);
-
+  const size = useScreenSize();
 
   return (
     <main className="fade">
-      <div className="header-mobile">
-        <button className="rounded_button" onClick={() => navigate(-1)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            width="16"
-            height="16"
+      {size.width > 1200 ? (
+        <Header />
+      ) : (
+        <div className="header-mobile">
+          <button className="rounded_button" onClick={() => navigate(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+            </svg>
+          </button>
+          <h2>Account</h2>
+          <button
+            className="rounded_button"
+            onClick={() => navigate("/mycars")}
           >
-            <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
-          </svg>
-        </button>
-        <h2>Account</h2>
-        <button className="rounded_button" onClick={() => navigate("/mycars")}>
-          <img src="/images/Untitled (4).png" height={35} width={35} />
-        </button>
-      </div>
+            <img src="/images/Untitled (4).png" height={35} width={35} />
+          </button>
+        </div>
+      )}
       <div className="product-body">
         <div>
           <div className="account_info">

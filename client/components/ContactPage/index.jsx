@@ -8,7 +8,7 @@ import {
   faEnvelopeOpenText,
   faPhoneVolume,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import {
   faFacebookF,
@@ -18,6 +18,7 @@ import {
   faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
+import useScreenSize from "../utils/screensize";
 const ContactPage = () => {
   const [message, setMessage] = useState({
     name: "",
@@ -25,6 +26,8 @@ const ContactPage = () => {
     subject: "",
     mainmessage: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = () => {
     const { name, value } = event.target;
@@ -55,11 +58,32 @@ const ContactPage = () => {
     });
   };
 
+  const size = useScreenSize();
+
   return (
     <main className=" fade">
-      <Header />
-      <section className="contact-page-main">
-        <div>
+      {size.width > 1200 ? (
+        <Header />
+      ) : (
+        <div className="header-mobile">
+          <button className="rounded_button" onClick={() => navigate(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+            </svg>
+          </button>
+          <h2>Contact Us</h2>
+          <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+            <img src="images/carticon.png" height={35} width={35} />
+          </div>
+        </div>
+      )}
+      <section className="product-body">
+        <div className="section_div">
           <h2>Let's Chat.</h2>
           <h2>Tell Me about Your Experience With Our Companies.</h2>
           <p>Let's work on something togeteher👏</p>
@@ -120,9 +144,9 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        <form className="contact-sec-2" onSubmit={Submit}>
+        <form className="section_div" onSubmit={Submit}>
           <h3>Send Us A Message🚀</h3>
-          <div className="page-input1">
+          <div className="page-input">
             <label>Name:</label>
             <input
               type={"text"}
@@ -132,7 +156,7 @@ const ContactPage = () => {
               onChange={handleChange}
             ></input>
           </div>
-          <div className="page-input1">
+          <div className="page-input">
             <label>Email Address:</label>
             <input
               type={"email"}
@@ -143,7 +167,7 @@ const ContactPage = () => {
               onChange={handleChange}
             ></input>
           </div>
-          <div className="page-input1">
+          <div className="page-input">
             <label>Subject:</label>
             <input
               type={"text"}
@@ -155,13 +179,13 @@ const ContactPage = () => {
           <p>Message*</p>
           <textarea
             value={message.mainmessage}
-            className="ta"
+            className="text_area"
             placeholder="Tell Us Your Thoughts..."
             name="mainmessage"
             required={true}
             onChange={handleChange}
           ></textarea>
-          <button>Send Message</button>
+          <button className="button">Send Message</button>
         </form>
       </section>
       <Footer />

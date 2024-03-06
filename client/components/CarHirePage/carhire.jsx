@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CarHireCard } from "../Cards/hire";
 import useScreenSize from "../utils/screensize";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../Header/Header";
 const CarHirePage = () => {
   const { cars } = useContext(FirebaseContext);
   const [searchValue, setSearchValue] = useState("");
@@ -28,22 +29,26 @@ const CarHirePage = () => {
   const size = useScreenSize();
   return (
     <main>
-      <div className="header-mobile">
-        <button className="rounded_button" onClick={() => navigate(-1)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            width="16"
-            height="16"
-          >
-            <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
-          </svg>
-        </button>
-        <h2>Car Hire</h2>
-        <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-          <img src="images/carticon.png" height={35} width={35} />
+      {size.width > 1200 ? (
+        <Header />
+      ) : (
+        <div className="header-mobile">
+          <button className="rounded_button" onClick={() => navigate(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+            </svg>
+          </button>
+          <h2>Car Hire</h2>
+          <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+            <img src="images/carticon.png" height={35} width={35} />
+          </div>
         </div>
-      </div>
+      )}
       <div className="search_div">
         <div className="search_input">
           <svg
@@ -84,7 +89,7 @@ const CarHirePage = () => {
           </div>
         </div>
       </div>
-      <BottomNav />
+      {size.width < 1200 && <BottomNav />}
     </main>
   );
 };

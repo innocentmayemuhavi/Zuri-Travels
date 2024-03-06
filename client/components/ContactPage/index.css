@@ -58,13 +58,16 @@
   padding: 4px 2px;
   min-height: 100px;
 }
-.ta {
+.text_area {
   min-height: 100px;
   min-width: 100%;
+  max-width: 200px ;
   margin: 10px 1px;
   border-radius: 4px;
   outline: none;
   padding: 9px 10px;
+  background-color: #1f1f1f;
+  color: #b3b3b3;
   max-height: 200px;
 }
 .contact-icon-div {

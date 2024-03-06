@@ -1,4 +1,4 @@
-header {
+/* header {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -6,7 +6,17 @@ header {
   top: 0;
   padding: 2px 15px;
   left: 0;
+  position: sticky; */
+/* } */
+
+header {
   position: sticky;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  backdrop-filter: blur(10px);
 }
 .header {
   display: flex;

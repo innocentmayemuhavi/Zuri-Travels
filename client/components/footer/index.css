@@ -1,9 +1,20 @@
 footer {
-    background-color:#fff ;
-    text-align: center;
-    margin-top: 20px;
-    padding: 12px ;
-  }
-  footer > a {
-    color: black;
-  }
+  text-align: center;
+  margin-bottom: 70px;
+}
+footer > a {
+  color: #fff;
+  font-size: 16px;
+}
+.footer-div {
+  display: flex;
+  gap: 20px;
+  color: #fff;
+  padding: 10px 10px;
+  justify-content: center;
+}
+
+.footer-div a {
+  color: #fff;
+  font-size: 16px;
+}
