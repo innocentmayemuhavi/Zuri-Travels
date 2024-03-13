@@ -20,6 +20,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   deleteUser,
+  updateCurrentUser,
 } from "firebase/auth";
 import {
   ref,
@@ -57,6 +58,7 @@ const FirebaseProvider = ({ children }) => {
   const [lis, setList] = useState({});
   const [list, setListt] = useState({});
   const [cars, setCars] = useState([]);
+  const [warning, setWarning] = useState("");
 
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
@@ -82,17 +84,17 @@ const FirebaseProvider = ({ children }) => {
           });
         }
 
-        const docRef1 = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
-        getDoc(docRef1).then(async (doc) => {
-          setList({
-            ...doc.data().cart,
-          });
-        });
-        onSnapshot(docRef1, async (doc) => {
-          setList({
-            ...doc.data().cars,
-          });
-        });
+        // const docRef1 = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
+        // getDoc(docRef1).then(async (doc) => {
+        //   setList({
+        //     ...doc.data().cart,
+        //   });
+        // });
+        // onSnapshot(docRef1, async (doc) => {
+        //   setList({
+        //     ...doc.data().cars,
+        //   });
+        // });
 
         const carDocRef = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
         getDoc(carDocRef).then(async (doc) => {
@@ -133,7 +135,7 @@ const FirebaseProvider = ({ children }) => {
         setListt(combinedOrders);
       } catch (error) {}
     });
-  }, [lis]);
+  }, [user]);
 
   const updateState = async (uid, id, type) => {
     try {
@@ -161,21 +163,99 @@ const FirebaseProvider = ({ children }) => {
 
     setDocId(uid);
   };
+
+  const editCar = async (id, data) => {
+    const carDocRef = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
+    getDoc(carDocRef).then(async (doc) => {
+      const cars = Object.values(doc.data().cars).map((car) => {
+        return car.id === id ? data : car;
+      });
+      setCars({
+        ...cars,
+      });
+    });
+  };
+
   const signin = async (email, password) => {
+    setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
-     await updateProfile(auth.currentUser, {
+      await updateProfile(auth.currentUser, {
         displayName: "Admin",
       });
 
       console.log("signed in");
-      // setWarning("");
-      // setIsLoading(false);
+      setWarning("");
+      setIsLoading(false);
     } catch (error) {
+      if (error.code) {
+        const w1 = error.code.split("auth/").join("");
+        const w2 = w1.split("-").join(" ");
+        setWarning(w2);
+        setIsLoading(false);
+      }
       console.log(error);
     }
   };
+  const signup = async (email, password, name, phone) => {
+    try {
+      setIsLoading(true);
+
+      const userData = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        phoneNumber: phone, // Add phone number here
+      });
+
+      if (userData) {
+        const isNewUser = getAdditionalUserInfo(userData).isNewUser;
+
+        if (isNewUser) {
+          await setDoc(doc(database, "admins", userData.user.uid), {
+            history: [],
+            role: "admin",
+          });
+        }
+      }
+      setWarning("");
+      setIsLoading(false);
+    } catch (e) {
+      if (e.code) {
+        const w1 = e.code.split("auth/").join("");
+        const w2 = w1.split("-").join(" ");
+        setWarning(w2);
+      }
+      setIsLoading(false);
+    }
+  };
+  const signout = async () => {
+    try {
+      setIsLoading(true);
+      await signOut(auth);
+      setUser(null);
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e.code);
+      setIsLoading(false);
+    }
+  };
+
+  const resetpassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      const w1 = error.code.split("auth/").join("");
+      const w2 = w1.split("-").join(" ");
+      setWarning(w2);
+    }
+  };
+
   const updateState1 = async (uid, id) => {
     try {
       const docRef = doc(database, "users", uid);
@@ -280,6 +360,12 @@ const FirebaseProvider = ({ children }) => {
         getDownloadURL,
         setCars,
         signin,
+        signup,
+        signout,
+        resetpassword,
+        warning,
+        setWarning,
+        editCar,
       }}
     >
       {children}

@@ -36,6 +36,8 @@ const DashBoard = () => {
         total: totalBookings + totalHires,
       });
     }
+
+    console.log(orders);
   }, [orders]);
 
   const data = {
@@ -59,7 +61,7 @@ const DashBoard = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <main className="fade">
           <Header />
           <title>DashBoad</title>
           <h1>Dash</h1>
@@ -73,7 +75,7 @@ const DashBoard = () => {
           <div className="chart">
             <Doughnut data={data} />
           </div>
-        </>
+        </main>
       )}
       {/* <button
         onClick={() => {

@@ -5,9 +5,11 @@ import Nav from "../nav";
 import { AppContext } from "../context/appcontext";
 
 const Header = () => {
-  const { user, signin } = useContext(FirebaseContext);
+  const { user, signin, signout } = useContext(FirebaseContext);
   const { showNav, setShowNav } = useContext(AppContext);
   console.log(user);
+
+  const data = null;
   return (
     <header>
       {showNav && <Nav />}
@@ -22,7 +24,7 @@ const Header = () => {
       </svg>
 
       <div className="account-div">
-        <div className="avatar">
+        <div className="avatar" onClick={() => signout()}>
           {user.displayName ? user.displayName[0] : "U"}
         </div>
         <p>

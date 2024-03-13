@@ -1,0 +1,58 @@
+.notification svg {
+  height: 24px;
+  width: 24px;
+  fill: #b3b3b3;
+}
+
+.notification {
+  position: fixed;
+  bottom: 67%;
+  width: 350px;
+  right: 20px;
+  list-style: none;
+  height: 170px;
+  background-color: #1f2023; /* pure black */
+  color: #b3b3b3;
+  border: 1px solid #b3b3b3;
+  text-align: center;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+  padding: 7px 10px;
+  border-radius: 10px;
+}
+.notification > svg {
+  height: 25px;
+  margin: 1px;
+  fill: #b3b3b3;
+}
+.notification-header {
+  width: 100%;
+  text-align: right;
+}
+.notification-body {
+  padding: 2px 10px;
+  text-align: center;
+  width: 100%;
+}
+.notification-buttons {
+  text-align: center;
+}
+.notification-buttons button {
+  min-width: 150px;
+  margin: 3px 1;
+  border-radius: 10px;
+  border: 1px solid #b3b3b3;
+  color: aliceblue;
+}
+
+@media only screen and (max-width: 1000px) {
+  .notification {
+    bottom: 0%;
+    border: none;
+    border-top: 1px solid #b3b3b3;
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}

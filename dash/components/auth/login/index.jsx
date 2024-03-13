@@ -1,15 +1,16 @@
 import { useContext, useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../src/Assets/Context";
-import Loading from "../../Loading";
+import { FirebaseContext } from "../../context/firebase";
+
 import "./index.css";
-import { FirebaseContext } from "../../../src/Assets/Context/firebaseContext";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const { signin, user, warning, setWarning, isLoading } =
     useContext(FirebaseContext);
+
+  console.log(isLoading);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -21,7 +22,7 @@ const Login = () => {
     try {
       await signin(data.email, data.password);
     } catch (error) {
-      setWarning(error.code);
+      // setWarning(error.code);
     }
   };
   const handleData = (event) => {
@@ -34,6 +35,10 @@ const Login = () => {
       };
     });
   };
+
+  useEffect(() => {
+    console.log(warning);
+  }, [warning]);
   return user ? (
     <Navigate to="/" />
   ) : (
@@ -41,11 +46,11 @@ const Login = () => {
       <main className="fade login-page">
         <form className="login-form" onSubmit={submit}>
           <div className="form-label">
-            <h3>Welcome Back</h3>
+            <h3>Log In To Your Account</h3>
           </div>
           <hr />
           <p className="warning">{warning}</p>
-          <div className="page-input">
+          <div className="page-input1">
             <label>Email</label>
             <input
               type={"email"}
@@ -57,7 +62,7 @@ const Login = () => {
               onChange={handleData}
             />
           </div>
-          <div className="page-input">
+          <div className="page-input1">
             <label>Password</label>
             <input
               type={"password"}

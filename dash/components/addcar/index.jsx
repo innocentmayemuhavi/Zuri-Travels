@@ -19,7 +19,6 @@ const AddingCars = () => {
     getDownloadURL,
     isLoading,
     uploadCar,
- 
   } = useContext(FirebaseContext);
 
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -99,7 +98,6 @@ const AddingCars = () => {
     );
   };
 
- 
   return (
     <>
       {isLoading ? (
@@ -110,18 +108,33 @@ const AddingCars = () => {
           <div></div>
           <div className="addingcarpage">
             <form className="adding-form" onSubmit={submit}>
-              <div className="page-input">
-                <label>Car Name:</label>
-                <input
-                  type={"text"}
-                  placeholder="Name"
-                  required={true}
-                  name="name"
-                  value={data.name}
-                  onChange={handleData}
-                />
+              <div className="booking_info">
+                <h4>Car Info</h4>
+                <div className="page-input1">
+                  <label>Car Name:</label>
+                  <input
+                    type={"text"}
+                    placeholder="Name"
+                    required={true}
+                    name="name"
+                    value={data.name}
+                    onChange={handleData}
+                  />
+                </div>
+                <label>Car Description:</label>
+                <div className="page-input1">
+                  <textarea
+                    type={"text"}
+                    placeholder="Description"
+                    required={true}
+                    className="text_area"
+                    name="description"
+                    value={data.description}
+                    onChange={handleData}
+                  />
+                </div>
               </div>
-              <div className="page-input">
+              <div className="page-input1">
                 <label>Car Image:</label>
                 <input
                   type="file"
@@ -143,76 +156,68 @@ const AddingCars = () => {
                   <></>
                 )}
               </div>
-              <div className="page-input">
-                <label>Car Description:</label>
-                <textarea
-                  type={"text"}
-                  placeholder="Description"
-                  required={true}
-                  name="description"
-                  value={data.description}
-                  onChange={handleData}
-                />
-              </div>
-              <div className="form-split">
-                <div className="page-input">
-                  <label>Price:</label>
-                  <input
-                    type={"number"}
-                    placeholder="Price"
-                    required={true}
-                    name="price"
-                    value={data.price}
-                    onChange={handleData}
-                  />
+              <div className="booking_info">
+                <h4>Car Info</h4>
+                <div className="form-split">
+                  <div className="page-input1">
+                    <label>Price:</label>
+                    <input
+                      type={"number"}
+                      placeholder="Price"
+                      required={true}
+                      name="price"
+                      value={data.price}
+                      onChange={handleData}
+                    />
+                  </div>
+                  <div className="page-input1">
+                    <label>Discount (%):</label>
+                    <input
+                      type={"number"}
+                      placeholder="Discount"
+                      required={true}
+                      name="offer"
+                      value={data.offer}
+                      onChange={handleData}
+                    />
+                  </div>
                 </div>
-                <div className="page-input">
-                  <label>Discount:</label>
-                  <input
-                    type={"number"}
-                    placeholder="Discount"
-                    required={true}
-                    name="offer"
-                    value={data.offer}
-                    onChange={handleData}
-                  />
-                </div>
-              </div>
-              <div className="form-split">
-                <div className="page-input">
-                  <label>Category:</label>
-                  <select
-                    name="category"
-                    value={data.category}
-                    onChange={handleData}
-                  >
-                    <option>coach</option>
-                    <option>SUV</option>
-                    <option>bike</option>
-                    <option>vintage</option>
-                    <option>van</option>
-                    <option>transist</option>
-                    <option>caravan</option>
-                    <option>cab</option>
-                  </select>
-                </div>
-                {data.category === "coach" && (
-                  <div className="page-input">
-                    <label>Trips:</label>
+                <div className="form-split">
+                  <div className="page-input1">
+                    <label>Category:</label>
                     <select
-                      name="trips"
-                      value={data.trips}
+                      name="category"
+                      value={data.category}
                       onChange={handleData}
                     >
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
+                      <option>coach</option>
+                      <option>SUV</option>
+                      <option>bike</option>
+                      <option>vintage</option>
+                      <option>van</option>
+                      <option>transist</option>
+                      <option>caravan</option>
+                      <option>cab</option>
                     </select>
                   </div>
-                )}
+                  {data.category === "coach" && (
+                    <div className="page-input1">
+                      <label>Trips:</label>
+                      <select
+                        name="trips"
+                        value={data.trips}
+                        onChange={handleData}
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              <button>
+              <button className="button">
                 {isLoading ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
