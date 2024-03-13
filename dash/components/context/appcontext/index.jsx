@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
   const [carData, setCarData] = useState({});
   const [Notification, setNotification] = useState("");
   const [showNotification, setShowNotification] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const savedData =
@@ -37,6 +38,8 @@ const AppProvider = ({ children }) => {
         setNotification,
         setShowNotification,
         showNotification,
+        showModal,
+        setShowModal,
       }}
     >
       {children}

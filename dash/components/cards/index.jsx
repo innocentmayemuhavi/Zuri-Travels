@@ -8,20 +8,11 @@ import { useNavigate } from "react-router-dom";
 const CarCard = (car) => {
   const [showOptions, setShowOptions] = useState(false);
   const { cars, setCars } = useContext(FirebaseContext);
-  const { carData, setCarData } = useContext(AppContext);
+  const { carData, setCarData, showModal, setShowModal } =
+    useContext(AppContext);
   const navigator = useNavigate();
 
-  const deleteCar = (id) => {
-    const newCars = Object.values(cars).filter((car) => car.id !== id);
-
-    setCars((prev) => {
-      return {
-        ...newCars,
-      };
-    });
-
-    handleCardActionClick();
-  };
+ 
 
   const clearBookings = (id) => {
     const newBookings = Object.values(cars).map((car) => {
@@ -58,7 +49,13 @@ const CarCard = (car) => {
         </div>
         {showOptions && (
           <div className="options">
-            <div className="action" onClick={() => deleteCar(car.id)}>
+            <div
+              className="action"
+              onClick={() => {
+                setCarData({ ...car });
+                setShowModal(true);
+              }}
+            >
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +85,7 @@ const CarCard = (car) => {
               </svg>
               Edit
             </div>
-            {/* {car.category === "coach" && (
+            {car.category === "coach" && (
               <div className="action" onClick={() => clearBookings(car.id)}>
                 {" "}
                 <svg
@@ -102,7 +99,7 @@ const CarCard = (car) => {
                 </svg>
                 Clear Bookings
               </div>
-            )} */}
+            )}
           </div>
         )}
         <img src={car.picture} />

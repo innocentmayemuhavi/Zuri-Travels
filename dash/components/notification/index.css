@@ -43,7 +43,25 @@
   border: 1px solid #b3b3b3;
   color: aliceblue;
 }
+.warning_modal {
+  border: 1px solid #b3b3b3;
+  padding: 10px;
+  background-color: #1f2023; /* pure black */
 
+  border-radius: 7px;
+}
+.overlay1 {
+  background-color: rgb(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (max-width: 1000px) {
   .notification {
     bottom: 0%;

@@ -9,6 +9,8 @@ import { AppContext } from "../context/appcontext";
 import { FirebaseContext } from "../context/firebase";
 import { Header } from "../header";
 import { Loader } from "../loading";
+import { Notifications } from "../notification";
+
 const AddingCars = () => {
   const {
     cars,
@@ -20,6 +22,8 @@ const AddingCars = () => {
     isLoading,
     uploadCar,
   } = useContext(FirebaseContext);
+  const { setNotification, setShowNotification, showNotification } =
+    useContext(AppContext);
 
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
@@ -58,13 +62,13 @@ const AddingCars = () => {
         ...newCars,
       };
     });
-    // setNotification(() => (
-    //   <p>
-    //     You Have Added <strong>{data.name}</strong> Car Succesfully
-    //   </p>
-    // ));
-    navigate("/");
-    // setShowNotification(true);
+    setNotification(() => (
+      <p>
+        You Have Added <strong>{data.name}</strong> Car Succesfully
+      </p>
+    ));
+    setShowNotification(true);
+    // navigate("/");
   };
 
   const handlePostImage = async (data, id) => {
@@ -99,7 +103,7 @@ const AddingCars = () => {
   };
 
   return (
-    <>
+    <main className="fade">
       {isLoading ? (
         <Loader />
       ) : (
@@ -236,7 +240,8 @@ const AddingCars = () => {
           </div>
         </section>
       )}
-    </>
+      {showNotification && <Notifications />}
+    </main>
   );
 };
 
