@@ -38,7 +38,7 @@ const BookingService = () => {
       }
     }
   };
-
+  console.log(serviceData);
   const handleBooking = async (id) => {
     console.log(serviceData);
     const exists = Cart.bookings.find((data) => data.id === id);
@@ -190,7 +190,7 @@ const BookingService = () => {
                 </p>
                 <p>
                   Booking cost: Ksh.{" "}
-                  <span>{parseInt(serviceData.price).toLocaleString()}</span>
+                  <span>{parseInt(serviceData.cost).toLocaleString()}</span>
                 </p>
                 <p>
                   Discount: <span>{serviceData.offer} %</span>
