@@ -59,7 +59,7 @@ const ConfirmPayModal = (props) => {
             type="text"
             name="code"
             onChange={handleData}
-            style={{ textTransform: "capitalize" }}
+            style={{ textTransform: "upperCase" }}
           />
         </div>
         <button className="button">Cancel</button>

@@ -21,35 +21,44 @@ const Pay_By_Mpesa = () => {
   const submit = async (event) => {
     event.preventDefault();
 
-    console.log("requesting");
+    console.log();
+    const url = `http://localhost:5175/stk/${Cart.totalAmount}/${user.phone}`;
 
-    // fetch(`http://localhost:5174/stk/${Cart.totalAmount}/${user.phone}`)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     navigate("/receipt");
-    //   })
-    //   .catch((error) => console.error("Error:", error));
-    updateTransaction({
-      amount: Cart.totalAmount,
-      status: "Pending",
-      id: nanoid(50),
-      timestamp: Timestamp.now(),
-      name: user.displayName,
-      email: user.email,
-      phone: user.phone,
-      uid: user.uid,
-    });
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        updateTransaction({
+          amount: Cart.totalAmount,
+          status: "Pending",
+          id: nanoid(50),
+          timestamp: Timestamp.now(),
+          name: user.displayName,
+          email: user.email,
+          phone: user.phone,
+          uid: user.uid,
+        });
 
-    setNotification(
-      <p>
-        <b>Notification:</b> Payment Request Sent Successfully Receipt will
-        generate soon give transaction code to your Customer Service Provider
-      </p>
-    );
-    setShowNotification(true);
+        setNotification(
+          <p>
+            <b>Notification:</b> Payment Request Sent Successfully Receipt will
+            generate soon await here ,give transaction code to your Customer
+            Service Provider
+          </p>
+        );
+        setShowNotification(true);
 
-    setTimeout(() => navigate("/receipt"), 5000);
+        setTimeout(() => navigate("/receipt"), 5000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setNotification(
+          <p>
+            <b>Notification:</b> Payment Request Failed Please Try Again
+          </p>
+        );
+        setShowNotification(true);
+      });
   };
 
   return (
@@ -73,7 +82,6 @@ const Pay_By_Mpesa = () => {
           Submit
         </button>
       </div>
-      
     </form>
   );
 };

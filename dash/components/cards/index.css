@@ -97,13 +97,13 @@
 
 @media screen and (max-width: 768px) {
   .car-card {
-    height: 340px;
+    max-height: 340px;
   }
   .car-image {
-    height: 200px;
+    height: 120px;
   }
   .car-image img {
-    height: 200px;
+    height: 120px;
     object-fit: cover;
   }
 }

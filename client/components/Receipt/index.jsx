@@ -24,7 +24,7 @@ const Receipt = () => {
   });
   const save = () => {
     window.print();
-    setTimeout(() => navigate("/"), 15000);
+    setTimeout(() => navigate("/"), 20000);
   };
 
   const render = Cart.cars.map((data) => {

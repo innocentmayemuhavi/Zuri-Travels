@@ -2,7 +2,7 @@
 const cors = require("cors");
 const express = require("express");
 const app = express();
-const port = 5174;
+const port = 5175;
 let headers = new Headers();
 
 const request = require("request");
@@ -106,8 +106,7 @@ app.get("/stk/:amount/:phone", getAccessToken, (req, res) => {
         PartyA: `254${phone.substring(1)}`,
         PartyB: 174379,
         PhoneNumber: `254${phone.substring(1)}`,
-        CallBackURL:
-          "https://17a2-102-219-210-106.ngrok-free.app/transactiondata",
+        CallBackURL: "https://mydomain.com/pat",
         AccountReference: "Zuri Travels",
         TransactionDesc: "Payment of Car Hire Services",
       },

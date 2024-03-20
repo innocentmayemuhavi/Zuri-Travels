@@ -3,3 +3,9 @@
   gap: 19px;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
+
+@media screen and (max-width: 900px) {
+  .cars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

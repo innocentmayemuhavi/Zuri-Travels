@@ -81,7 +81,9 @@ h5 {
 } */
 
 .back {
-  padding: 10% 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .strip {
   background-color: #6b7280;
