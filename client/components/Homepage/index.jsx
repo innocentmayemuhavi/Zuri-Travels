@@ -76,6 +76,13 @@ const HomeMobile = () => {
     <CarBookingCard {...data} key={data.id} />
   ));
 
+  const fetchData = () => {
+    fetch("http://localhost:5174/mpesa")
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  };
+
   return (
     <main>
       <Header />
@@ -190,6 +197,7 @@ const HomeMobile = () => {
           )}
         </div>
       </div>
+
       <Footer />
       {size.width < 1200 && <BottomNav />}
     </main>

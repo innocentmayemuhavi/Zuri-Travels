@@ -1,11 +1,15 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
-
+import { nanoid } from "nanoid";
+import { Timestamp } from "firebase/firestore";
+import { AuthContext } from "../../src/Assets/Context";
 const Pay_By_Mpesa = () => {
   const [Details, setdetails] = useState({});
 
-  const { Cart } = useContext(FirebaseContext);
+  const { Cart, user, updateTransaction } = useContext(FirebaseContext);
+  const { showNotification, setNotification, setShowNotification } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const Check = (event) => {
     const { name, value } = event.target;
@@ -14,10 +18,38 @@ const Pay_By_Mpesa = () => {
     });
   };
 
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
 
-    navigate("/receipt");
+    console.log("requesting");
+
+    // fetch(`http://localhost:5174/stk/${Cart.totalAmount}/${user.phone}`)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     navigate("/receipt");
+    //   })
+    //   .catch((error) => console.error("Error:", error));
+    updateTransaction({
+      amount: Cart.totalAmount,
+      status: "Pending",
+      id: nanoid(50),
+      timestamp: Timestamp.now(),
+      name: user.displayName,
+      email: user.email,
+      phone: user.phone,
+      uid: user.uid,
+    });
+
+    setNotification(
+      <p>
+        <b>Notification:</b> Payment Request Sent Successfully Receipt will
+        generate soon give transaction code to your Customer Service Provider
+      </p>
+    );
+    setShowNotification(true);
+
+    setTimeout(() => navigate("/receipt"), 5000);
   };
 
   return (
@@ -34,8 +66,14 @@ const Pay_By_Mpesa = () => {
         </fieldset>
       </section>
       <div className="form-button">
-        <button className="button">Submit</button>
+        <button
+          className={`button ${Cart.totalAmount === 0 && "disabled"}`}
+          disabled={Cart.totalAmount === 0 && true}
+        >
+          Submit
+        </button>
       </div>
+      
     </form>
   );
 };

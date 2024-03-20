@@ -3,9 +3,9 @@ import { useContext } from "react";
 import { FirebaseContext } from "../context/firebase";
 import { useState } from "react";
 import { useEffect } from "react";
-import {Loader} from '../loading'
+import { Loader } from "../loading";
 import { Header } from "../header";
-
+import Nav from "../nav";
 
 const Orders = () => {
   const { orders, isLoading, updateState, list, updateState1 } =
@@ -26,8 +26,6 @@ const Orders = () => {
       });
     }
   }, [list]);
-
- 
 
   const renderHiredCars = hiredCars.map((data, index) => (
     <tr key={index}>
@@ -132,15 +130,12 @@ const Orders = () => {
   ));
 
   return (
-
- 
-    <>
+    <main className="fade">
       {isLoading ? (
-      <Loader/>
+        <Loader />
       ) : (
         <>
-        <Header/>
-          {" "}
+          <Header hasback={true} title='Orders' />{" "}
           <div className="order-nav">
             <button
               style={{
@@ -170,46 +165,47 @@ const Orders = () => {
           {tab === 0 ? (
             <>
               <h1>Car Hires</h1>
-            <div className="table-holder">
-            <table>
-                <thead>
-                  <th>No</th>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Drop Point</th>
-                  <th>Pick-Up Date</th>
-                  <th>Days</th>
-                  <th>Cost</th>
-                  <th>State</th>
-                </thead>
-                <tbody>{renderHiredCars}</tbody>
-              </table>
-            </div>
+              <div className="table-holder">
+                <table>
+                  <thead>
+                    <th>No</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Drop Point</th>
+                    <th>Pick-Up Date</th>
+                    <th>Days</th>
+                    <th>Cost</th>
+                    <th>State</th>
+                  </thead>
+                  <tbody>{renderHiredCars}</tbody>
+                </table>
+              </div>
             </>
           ) : (
             <>
               <h1>Car Bookings</h1>
 
-            <div className="table-holder">
-            <table>
-                <thead>
-                  <th>No</th>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Time</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Cost</th>
-                  <th>Status</th>
-                </thead>
-                <tbody >{renderBookings}</tbody>
-              </table>
-            </div>
+              <div className="table-holder">
+                <table>
+                  <thead>
+                    <th>No</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Time</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Cost</th>
+                    <th>Status</th>
+                  </thead>
+                  <tbody>{renderBookings}</tbody>
+                </table>
+              </div>
             </>
           )}
         </>
       )}
-    </>
+      <Nav />
+    </main>
   );
 };
 

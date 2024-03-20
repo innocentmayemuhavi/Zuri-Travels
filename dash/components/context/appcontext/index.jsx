@@ -12,6 +12,8 @@ const AppProvider = ({ children }) => {
   const [Notification, setNotification] = useState("");
   const [showNotification, setShowNotification] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showPayModal, setShowPayModal] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   useEffect(() => {
     const savedData =
@@ -27,6 +29,20 @@ const AppProvider = ({ children }) => {
     }
   }, [carData]);
 
+  useEffect(() => {
+    const savedData =
+      localStorage.getItem("payData") === null
+        ? {}
+        : JSON.parse(localStorage.getItem("payData"));
+    setModalData(savedData);
+  }, []);
+
+  useEffect(() => {
+    if (modalData) {
+      localStorage.setItem("payData", JSON.stringify(modalData));
+    }
+  }, [modalData]);
+
   return (
     <AppContext.Provider
       value={{
@@ -40,6 +56,10 @@ const AppProvider = ({ children }) => {
         showNotification,
         showModal,
         setShowModal,
+        showPayModal,
+        setShowPayModal,
+        modalData,
+        setModalData,
       }}
     >
       {children}

@@ -43,3 +43,8 @@ svg {
   fill: #fff;
   cursor: pointer;
 }
+.back {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

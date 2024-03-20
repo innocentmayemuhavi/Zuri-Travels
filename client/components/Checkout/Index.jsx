@@ -9,10 +9,16 @@ import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import CreditCard from "../credit";
+import { Notifications } from "../notification/Notification";
 const Checkout = () => {
   const [showvisa, setshowvisa] = useState(true);
-  const { isLoading, setisLoading, setProductData, setServiceData } =
-    useContext(AuthContext);
+  const {
+    isLoading,
+    setisLoading,
+    setProductData,
+    setServiceData,
+    showNotification,
+  } = useContext(AuthContext);
   const { user, Cart } = useContext(FirebaseContext);
   const [tab, setTab] = useState(0);
   const navigate = useNavigate();
@@ -76,8 +82,8 @@ const Checkout = () => {
             </button>
             <h2>Checkout</h2>
             <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-          <img src="images/carticon.png" height={35} width={35} />
-        </div>
+              <img src="images/carticon.png" height={35} width={35} />
+            </div>
           </div>
           <div className="checkout-page">
             <section className="checkout-modal">
@@ -197,6 +203,7 @@ const Checkout = () => {
           </div>
         </div>
       )}
+      {showNotification && <Notifications />}
     </main>
   );
 };

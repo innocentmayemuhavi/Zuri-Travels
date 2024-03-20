@@ -28,6 +28,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { Timestamp } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
@@ -59,6 +60,7 @@ const FirebaseProvider = ({ children }) => {
   const [list, setListt] = useState({});
   const [cars, setCars] = useState([]);
   const [warning, setWarning] = useState("");
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
@@ -84,17 +86,17 @@ const FirebaseProvider = ({ children }) => {
           });
         }
 
-        // const docRef1 = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
-        // getDoc(docRef1).then(async (doc) => {
-        //   setList({
-        //     ...doc.data().cart,
-        //   });
-        // });
-        // onSnapshot(docRef1, async (doc) => {
-        //   setList({
-        //     ...doc.data().cars,
-        //   });
-        // });
+        const transactionsDocRef = doc(
+          database,
+          "payments",
+          "h29L3i4InvZCuq55gsPY"
+        );
+        getDoc(transactionsDocRef).then(async (doc) => {
+          setTransactions([...doc.data().data]);
+        });
+        onSnapshot(transactionsDocRef, async (doc) => {
+          setTransactions([...doc.data().data]);
+        });
 
         const carDocRef = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
         getDoc(carDocRef).then(async (doc) => {
@@ -113,6 +115,8 @@ const FirebaseProvider = ({ children }) => {
         console.log(e);
       }
     });
+
+    const carDocRef = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
   }, []);
 
   useEffect(() => {
@@ -164,6 +168,41 @@ const FirebaseProvider = ({ children }) => {
     setDocId(uid);
   };
 
+  const updateTransaction = async (uid, id, code,timestamp) => {
+    try {
+      const docRef = doc(database, "payments", "h29L3i4InvZCuq55gsPY");
+      const userDocRef = doc(database, "users", uid);
+      console.log("updating transaction", id);
+
+      onSnapshot(docRef, async (doc) => {
+        const data = doc.data().data.map((data) =>
+          data.id === id
+            ? {
+                ...data,
+                status: "Completed",
+                code: code,
+                timestamp: timestamp,
+              }
+            : data
+        );
+
+        await updateDoc(docRef, {
+          data: data,
+        });
+      });
+      updateDoc(userDocRef, {
+        cart: {
+          cars: [],
+          bookings: [],
+          hireAmount: 0,
+          bookingsAmount: 0,
+          totalAmount: 0,
+        },
+      });
+    } catch (e) {
+      console.log("errer", e);
+    }
+  };
   const editCar = async (id, data) => {
     const carDocRef = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
     getDoc(carDocRef).then(async (doc) => {
@@ -307,6 +346,24 @@ const FirebaseProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const clearUserCart = async (id) => {
+    try {
+      if (auth.currentUser.uid) {
+        const docRef = doc(database, "users", docId);
+        await updateDoc(docRef, {
+          cart: {
+            cars: [],
+            bookings: [],
+            hireAmount: 0,
+            bookingsAmount: 0,
+            totalAmount: 0,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (docId) {
@@ -366,6 +423,9 @@ const FirebaseProvider = ({ children }) => {
         warning,
         setWarning,
         editCar,
+        transactions,
+        setTransactions,
+        updateTransaction,
       }}
     >
       {children}

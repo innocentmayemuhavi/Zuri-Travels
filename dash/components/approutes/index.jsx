@@ -18,6 +18,7 @@ import { Loader } from "../loading";
 import Login from "../auth/login";
 import { SignUp } from "../auth/signup";
 import { CarEdit } from "../caredit";
+import { Transactions } from "../transactions";
 
 const ProtectedRoutes = () => {
   const { user, isLoading } = useContext(FirebaseContext);
@@ -40,6 +41,7 @@ const AppRoutes = createBrowserRouter(
         <Route path="/addcars" element={<AddingCars />} />
         <Route path="/vehiclemanagement" element={<VehecleManagement />} />
         <Route path="caredit" element={<CarEdit />} />
+        <Route path="transactions" element={<Transactions />} />
       </Route>
       <Route path="*" element={<div>Page Not Found</div>} />
       <Route path="/login" element={<Login />} />

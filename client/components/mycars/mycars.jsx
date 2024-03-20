@@ -8,10 +8,18 @@ import { Button } from "../Button/Index";
 import Loading from "../Loading";
 import "./index.css";
 import useScreenSize from "../utils/screensize";
+import { Notifications } from "../notification/Notification";
 
 const Cart = () => {
-  const { setProductData, isLoading, setisLoading, setServiceData } =
-    useContext(AuthContext);
+  const {
+    setProductData,
+    isLoading,
+    setisLoading,
+    setServiceData,
+    setShowNotification,
+    showNotification,
+    setNotification,
+  } = useContext(AuthContext);
 
   const { Cart, setCart } = useContext(FirebaseContext);
   const navigate = useNavigate();
@@ -438,13 +446,32 @@ const Cart = () => {
             {Cart.totalAmount > 0 && (
               <Button
                 text="Checkout"
-                onClick={() => navigate("/checkout")}
+                onClick={() => {
+                  const isBookingsApproved = Cart.bookings.every(
+                    (booking) => booking.status === "Approved"
+                  );
+                  const isCarsApproved = Cart.cars.every(
+                    (car) => car.status === "Approved"
+                  );
+                  if (isBookingsApproved && isCarsApproved) {
+                    navigate("/checkout");
+                  } else {
+                    setNotification(
+                      <p>
+                        <b>Notification:</b> Please make sure all your bookings
+                        and hires are approved before proceeding to checkout
+                      </p>
+                    );
+                    setShowNotification(true);
+                  }
+                }}
                 class="button"
               />
             )}
           </div>
         </div>
       </section>
+      {showNotification && <Notifications />}
     </main>
   );
 };

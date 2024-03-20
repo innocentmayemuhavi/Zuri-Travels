@@ -10,6 +10,7 @@ import { FirebaseContext } from "../context/firebase";
 import { Header } from "../header";
 import { Loader } from "../loading";
 import { Notifications } from "../notification";
+import Nav from "../nav";
 
 const AddingCars = () => {
   const {
@@ -108,7 +109,7 @@ const AddingCars = () => {
         <Loader />
       ) : (
         <section>
-          <Header />
+          <Header title="Add Car" hasback={true} />
           <div></div>
           <div className="addingcarpage">
             <form className="adding-form" onSubmit={submit}>
@@ -241,6 +242,7 @@ const AddingCars = () => {
         </section>
       )}
       {showNotification && <Notifications />}
+      <Nav />
     </main>
   );
 };

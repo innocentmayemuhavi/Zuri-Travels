@@ -70,6 +70,7 @@ const FirebaseProvider = ({ children }) => {
     bookingsAmount: 0,
     totalAmount: 0,
   });
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
@@ -124,6 +125,12 @@ const FirebaseProvider = ({ children }) => {
           setCars({
             ...doc.data().cars,
           });
+        });
+        const docRef3 = doc(database, "payments", "h29L3i4InvZCuq55gsPY");
+        let data = [];
+
+        onSnapshot(docRef3, async (doc) => {
+          setTransactions(doc.data().data);
         });
         setIsLoading(false);
       } catch (error) {
@@ -408,6 +415,21 @@ const FirebaseProvider = ({ children }) => {
     );
   };
 
+  const updateTransaction = async (reqData) => {
+    console.log(transactions);
+    const newData = transactions;
+    newData.unshift(reqData);
+    const docRef = doc(database, "payments", "h29L3i4InvZCuq55gsPY");
+
+    try {
+      await updateDoc(docRef, {
+        data: newData,
+      });
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -437,6 +459,7 @@ const FirebaseProvider = ({ children }) => {
         handleImage,
         uploadProgress,
         isUploading,
+        updateTransaction,
       }}
     >
       {children}

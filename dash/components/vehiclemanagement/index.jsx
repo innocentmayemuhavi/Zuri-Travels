@@ -7,6 +7,7 @@ import "./index.css";
 import { AppContext } from "../context/appcontext";
 import { WarningModal } from "../notification/warnig";
 import { Notifications } from "../notification";
+import Nav from "../nav";
 const VehecleManagement = () => {
   const { isLoading, cars } = useContext(FirebaseContext);
   const { showModal, setShowModal, showNotification } = useContext(AppContext);
@@ -18,19 +19,19 @@ const VehecleManagement = () => {
   ));
 
   return (
-    <>
+    <main className="fade">
       {isLoading ? (
         <Loader />
       ) : (
         <main className="main">
-          <Header />
-          <div>Vehicle Management</div>
+          <Header title="Vehicle Management" hasback={true} />
           <div className="cars-grid">{render}</div>
           {showModal && <WarningModal />}
           {showNotification && <Notifications />}
         </main>
       )}
-    </>
+      <Nav />s
+    </main>
   );
 };
 

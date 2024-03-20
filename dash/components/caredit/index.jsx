@@ -82,7 +82,7 @@ const CarEdit = () => {
     <Loader />
   ) : (
     <main className="fade">
-      <Header />
+      <Header hasback={true} title='Car Edit' />
 
       <div className="product-body">
         <div className="product-image  edit_image_div">

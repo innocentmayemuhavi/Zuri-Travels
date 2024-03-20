@@ -65,6 +65,13 @@
   text-align: center;
   align-items: center;
 }
+.disabled{
+  background-color: grey;
+}
+.disabled:hover{
+  background-color: grey;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
