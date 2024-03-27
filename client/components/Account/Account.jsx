@@ -133,6 +133,11 @@ const Account = () => {
           <h2>Account</h2>
           <div className="cart_avatar" onClick={() => navigate("/mycars")}>
             <img src="/images/Untitled.png" height={35} width={35} />
+            {Cart.bookings.length + Cart.cars.length > 0 && (
+              <div className="notification_indicator">
+                {Cart.bookings.length + Cart.cars.length}
+              </div>
+            )}
           </div>
         </div>
       )}

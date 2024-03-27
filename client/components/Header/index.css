@@ -17,6 +17,7 @@ header {
   justify-content: space-between;
   top: 0;
   backdrop-filter: blur(10px);
+  z-index: 1400;
 }
 .header {
   display: flex;
@@ -46,4 +47,22 @@ header {
   height: 100%;
   width: 100%;
   cursor: pointer;
+}
+.user_prof svg {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.notification_indicator {
+  position: absolute;
+  background-color: black;
+  color: white;
+  width: 20px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  border-radius: 50%;
 }

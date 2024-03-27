@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
 import React from "react";
 const CarBookingPage = () => {
-  const { cars } = useContext(FirebaseContext);
+  const { cars, Cart } = useContext(FirebaseContext);
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
@@ -47,6 +47,11 @@ const CarBookingPage = () => {
           <h2>Car Booking</h2>
           <div className="cart_avatar" onClick={() => navigate("/mycars")}>
             <img src="/images/Untitled.png" height={35} width={35} />
+            {Cart.bookings.length + Cart.cars.length > 0 && (
+              <div className="notification_indicator">
+                {Cart.bookings.length + Cart.cars.length}
+              </div>
+            )}
           </div>
         </div>
       )}

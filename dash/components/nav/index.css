@@ -15,17 +15,41 @@
   backdrop-filter: blur(10px);
 }
 
-.nav>.active {
+.nav {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-active {
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.nav > .active {
   display: none;
   /* color: #fff;
   background-color: #222;
   border-radius: 20px;
   padding: 10px; */
 }
-.nav-active >.not-active {
+.nav-active > .not-active {
   display: none;
   /* color: #fff;
   border-radius: 20px;
   padding: 10px;
   background-color: green; */
+}
+.notification_indicator {
+  width: 15px;
+  font-size: medium;
+  font-weight: 800;
+  color: black;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
 }

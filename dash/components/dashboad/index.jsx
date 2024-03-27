@@ -153,7 +153,7 @@ const DashBoard = () => {
         <Loader />
       ) : (
         <main className="fade">
-          <Header title="DashBoard" />
+          <Header title="DashBoard" showLogOut={true} />
           <div className="progress-flex">
             <div className="progress_div">
               <div>
