@@ -2,7 +2,7 @@ import { lazy, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
-
+import React from "react";
 const BookingCard = (props) => {
   const navigate = useNavigate();
   const { setServiceData } = useContext(AuthContext);

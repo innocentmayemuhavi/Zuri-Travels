@@ -1,3 +1,8 @@
 .table-holder {
   overflow-y: auto;
+  border: 1px solid #b3b3b3;
+  padding: 7px;
+  gap: 5px;
+  background-color: #3a3a3a;
+  border-radius: 10px;
 }

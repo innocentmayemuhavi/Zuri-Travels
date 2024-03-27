@@ -18,6 +18,7 @@ import { CarBookingCard } from "../Cards/booking";
 import { Footer } from "../footer/Footer";
 import { NavLink } from "react-router-dom";
 import { Header } from "../Header/Header";
+import React from "react";
 const HomeMobile = () => {
   const { user, cars } = useContext(FirebaseContext);
   const navigate = useNavigate();

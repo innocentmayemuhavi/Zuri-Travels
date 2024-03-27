@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import "./index.css";
 import { AuthContext } from "../../src/Assets/Context";
 import { Link } from "react-router-dom";
-
+import React from "react";
 const Phonenav = () => {
   const { setShowPhoneNav, setShowSliderButton } = useContext(AuthContext);
 

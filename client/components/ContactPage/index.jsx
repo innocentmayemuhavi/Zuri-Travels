@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../Button/Index";
 import { Footer } from "../footer/Footer";
 import { Header } from "../Header/Header";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -19,6 +20,7 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import useScreenSize from "../utils/screensize";
+import React from "react";
 const ContactPage = () => {
   const [message, setMessage] = useState({
     name: "",
@@ -78,7 +80,7 @@ const ContactPage = () => {
           </button>
           <h2>Contact Us</h2>
           <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-            <img src="images/carticon.png" height={35} width={35} />
+            <img src="/images/Untitled.png" height={35} width={35} />
           </div>
         </div>
       )}

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
+import React from "react";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const LisencePage = () => {
   const navigate = useNavigate();

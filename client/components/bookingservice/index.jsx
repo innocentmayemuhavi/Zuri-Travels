@@ -157,20 +157,20 @@ const BookingService = () => {
 
       <div className="product fade">
         <div className="header-mobile">
-        <div className="back" onClick={() => navigate(-1)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            width="18"
-            height="18"
-          >
-            <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
-          </svg>
-          Back
-        </div>
+          <div className="back" onClick={() => navigate(-1)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="18"
+              height="18"
+            >
+              <path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"></path>
+            </svg>
+            Back
+          </div>
           <h2>Car Hire</h2>
           <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-            <img src="images/carticon.png" height={35} width={35} />
+            <img src="/images/Untitled.png" height={35} width={35} />
           </div>
         </div>
         <div className="product-body">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import React from "react";
 const Pay_By_Card = () => {
   const [Details, setdetails] = useState({});
 const navigate=useNavigate()

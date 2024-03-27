@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-
+import React from "react";
 import {
   getAuth,
   onAuthStateChanged,
@@ -87,9 +87,23 @@ const FirebaseProvider = ({ children }) => {
           const docref = doc(database, "users", auth.currentUser.uid);
 
           getDoc(docref).then(async (doc) => {
-            setCart({
-              ...doc.data().cart,
-            });
+            if (doc.exists) {
+              setCart({
+                ...doc.data().cart,
+              });
+            } else {
+              setCart({
+                cars: [],
+                bookings: [],
+                hireAmount: 0,
+                bookingsAmount: 0,
+                totalAmount: 0,
+              });
+            }
+
+            // setCart({
+            //   ...doc.data().cart,
+            // });
 
             setUser((prev) => {
               return {
@@ -103,16 +117,26 @@ const FirebaseProvider = ({ children }) => {
             });
           });
           onSnapshot(docref, async (doc) => {
-            setCart({
-              ...doc.data().cart,
-            });
-            setUser((prev) => {
-              return {
-                ...prev,
-                history: doc.data().history,
-                ...doc.data.userdata,
-              };
-            });
+            if (doc.exists) {
+              setCart({
+                ...doc.data().cart,
+              });
+              setUser((prev) => {
+                return {
+                  ...prev,
+                  history: doc.data().history,
+                  ...doc.data.userdata,
+                };
+              });
+            } else {
+              setCart({
+                cars: [],
+                bookings: [],
+                hireAmount: 0,
+                bookingsAmount: 0,
+                totalAmount: 0,
+              });
+            }
           });
         }
 
@@ -157,23 +181,23 @@ const FirebaseProvider = ({ children }) => {
     try {
       if (auth.currentUser.uid) {
         const docRef = doc(database, "users", auth.currentUser.uid);
-        const docRef1 = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
+        const docRef1 = doc(database, "orders", "z7zydCKkchhiF9gEy2IBtH");
         await updateDoc(docRef, {
           cart: Cart,
         });
-        await updateDoc(docRef1, {
-          orders: [
-            {
-              user: {
-                name: user.displayName,
-                id: auth.currentUser.uid,
-              },
-              orders: {
-                ...Cart,
-              },
-            },
-          ],
-        });
+        // await updateDoc(docRef1, {
+        //   orders: [
+        //     {
+        //       user: {
+        //         name: user.displayName,
+        //         id: auth.currentUser.uid,
+        //       },
+        //       orders: {
+        //         ...Cart,
+        //       },
+        //     },
+        //   ],
+        // });
       }
     } catch (error) {
       console.log(error);
@@ -278,25 +302,21 @@ const FirebaseProvider = ({ children }) => {
       });
 
       if (userData) {
-        const isNewUser = getAdditionalUserInfo(userData).isNewUser;
-
-        if (isNewUser) {
-          await setDoc(doc(database, "users", userData.user.uid), {
-            userdata: {
-              phoneNumber: phone,
-              lisence: {},
-              isLisenceAuthenticated: false,
-            },
-            history: [],
-            cart: {
-              cars: [],
-              bookings: [],
-              hireAmount: 0,
-              bookingsAmount: 0,
-              totalAmount: 0,
-            },
-          });
-        }
+        await setDoc(doc(database, "users", userData.user.uid), {
+          userdata: {
+            phoneNumber: phone,
+            lisence: {},
+            isLisenceAuthenticated: false,
+          },
+          history: [],
+          cart: {
+            cars: [],
+            bookings: [],
+            hireAmount: 0,
+            bookingsAmount: 0,
+            totalAmount: 0,
+          },
+        });
       }
       setWarning("");
       setIsLoading(false);

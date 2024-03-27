@@ -4,20 +4,37 @@ import { Header } from "../header";
 import { useState } from "react";
 import { AppContext } from "../context/appcontext";
 import { ConfirmPayModal } from "../Modals";
+import { Link, useNavigate } from "react-router-dom";
+import "./index.css";
 import Nav from "../nav";
 const Transactions = () => {
+  const navigate = useNavigate();
   const { transactions } = useContext(FirebaseContext);
   const { showPayModal, setShowPayModal, setModalData } =
     useContext(AppContext);
 
-  console.log(showPayModal);
   const [tab, setTab] = useState(0);
 
+  const [filterData, setFilterData] = useState({
+    startDate: "",
+    endDate: "",
+  });
+
+  const [useFilter, setUseFilter] = useState(false);
   const completedTransactions = transactions.filter(
-    (data) => data.status === "Completed"
+    (data) =>
+      (!useFilter ||
+        (new Date(data.timestamp.toDate()) >= new Date(filterData.startDate) &&
+          new Date(data.timestamp.toDate()) <= new Date(filterData.endDate))) &&
+      data.status === "Completed"
   );
+
   const pendingTransactions = transactions.filter(
-    (data) => data.status === "Pending"
+    (data) =>
+      (!useFilter ||
+        (new Date(data.timestamp.toDate()) >= new Date(filterData.startDate) &&
+          new Date(data.timestamp.toDate()) <= new Date(filterData.endDate))) &&
+      data.status === "Pending"
   );
 
   const renderPendingTransactions = pendingTransactions.map(
@@ -109,6 +126,57 @@ const Transactions = () => {
         >
           Completed
         </button>
+      </div>
+      <div>
+        <div>
+          <h4>Filter</h4>
+          <div className="page-input1">
+            <label>Use Filter</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={useFilter}
+                onChange={(e) => setUseFilter(!useFilter)}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          <Link
+            onClick={() =>
+              setFilterData({
+                startDate: "",
+                endDate: "",
+              })
+            }
+          >
+            Clear FIlter
+          </Link>
+        </div>
+        <div>
+          <div className="page-input1">
+            <label>From</label>
+            <input
+              type="date"
+              value={filterData.startDate}
+              onChange={(e) =>
+                setFilterData({ ...filterData, startDate: e.target.value })
+              }
+            />
+          </div>
+          <div className="page-input1">
+            <label>To:</label>
+            <input
+              type="date"
+              value={filterData.endDate}
+              onChange={(e) =>
+                setFilterData({ ...filterData, endDate: e.target.value })
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div className="button_right">
+        <button className="button" onClick={()=>navigate('/transactionsreports')}>Generate Report</button>
       </div>
       <div className="table-holder">
         {tab === 0 ? (

@@ -5,7 +5,7 @@ import { Button } from "../Button/Index";
 import { BookingCard } from "../Cards/BookingCard";
 import { Footer } from "../footer/Footer";
 import { Header } from "../Header/Header";
-
+import React from "react";
 import "./index.css";
 import { useEffect } from "react";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";

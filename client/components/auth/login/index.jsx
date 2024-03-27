@@ -4,7 +4,7 @@ import { AuthContext } from "../../../src/Assets/Context";
 import Loading from "../../Loading";
 import "./index.css";
 import { FirebaseContext } from "../../../src/Assets/Context/firebaseContext";
-
+import React from "react";
 const Login = () => {
   const navigate = useNavigate();
 

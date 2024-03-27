@@ -135,7 +135,7 @@ const Orders = () => {
         <Loader />
       ) : (
         <>
-          <Header hasback={true} title='Orders' />{" "}
+          <Header hasback={true} title="Orders" />{" "}
           <div className="order-nav">
             <button
               style={{

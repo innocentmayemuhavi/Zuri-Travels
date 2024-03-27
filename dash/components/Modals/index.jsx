@@ -16,7 +16,7 @@ const ConfirmPayModal = (props) => {
     setModalData((prev) => {
       return {
         ...prev,
-        [name]: value,
+        [name]: value.toUpperCase(),
       };
     });
   };

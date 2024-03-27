@@ -1,6 +1,6 @@
 import { AuthContext } from "../../src/Assets/Context";
 import { useContext, useEffect, useState } from "react";
-
+import React from "react";
 import "./index.css";
 import { Button } from "../Button/Index";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
@@ -131,12 +131,9 @@ const Account = () => {
             Back
           </div>
           <h2>Account</h2>
-          <button
-            className="rounded_button"
-            onClick={() => navigate("/mycars")}
-          >
-            <img src="/images/Untitled (4).png" height={35} width={35} />
-          </button>
+          <div className="cart_avatar" onClick={() => navigate("/mycars")}>
+            <img src="/images/Untitled.png" height={35} width={35} />
+          </div>
         </div>
       )}
       <div className="product-body">

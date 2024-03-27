@@ -4,6 +4,7 @@ import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import { nanoid } from "nanoid";
 import { Timestamp } from "firebase/firestore";
 import { AuthContext } from "../../src/Assets/Context";
+import React from "react";
 const Pay_By_Mpesa = () => {
   const [Details, setdetails] = useState({});
 
@@ -27,13 +28,15 @@ const Pay_By_Mpesa = () => {
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log(Cart);
         updateTransaction({
           amount: Cart.totalAmount,
           status: "Pending",
           id: nanoid(50),
           timestamp: Timestamp.now(),
           name: user.displayName,
+          bookingsAmount: parseInt(Cart.bookingsAmount),
+          hireAmount: parseInt(Cart.hireAmount),
           email: user.email,
           phone: user.phone,
           uid: user.uid,

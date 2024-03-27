@@ -61,6 +61,10 @@ const FirebaseProvider = ({ children }) => {
   const [cars, setCars] = useState([]);
   const [warning, setWarning] = useState("");
   const [transactions, setTransactions] = useState([]);
+  const [allOrders, setAllOrders] = useState({
+    bookings: [],
+    hires: [],
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
@@ -108,6 +112,14 @@ const FirebaseProvider = ({ children }) => {
           setCars({
             ...doc.data().cars,
           });
+        });
+
+        const ordersDocRef = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
+        getDoc(ordersDocRef).then(async (doc) => {
+          setAllOrders({ ...doc.data() });
+        });
+        onSnapshot(ordersDocRef, async (doc) => {
+          setAllOrders({ ...doc.data() });
         });
 
         setIsLoading(false);
@@ -163,12 +175,23 @@ const FirebaseProvider = ({ children }) => {
           ...docToUpdate,
         };
       });
+      const ordersDocRef = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
+
+      const newHires = allOrders.hires;
+
+      newHires.unshift({
+        id: id,
+        date: Timestamp.now(),
+      });
+      updateDoc(ordersDocRef, {
+        hires: newHires,
+      });
     } catch (e) {}
 
     setDocId(uid);
   };
 
-  const updateTransaction = async (uid, id, code,timestamp) => {
+  const updateTransaction = async (uid, id, code, timestamp) => {
     try {
       const docRef = doc(database, "payments", "h29L3i4InvZCuq55gsPY");
       const userDocRef = doc(database, "users", uid);
@@ -190,6 +213,7 @@ const FirebaseProvider = ({ children }) => {
           data: data,
         });
       });
+
       updateDoc(userDocRef, {
         cart: {
           cars: [],
@@ -317,6 +341,25 @@ const FirebaseProvider = ({ children }) => {
           ...docToUpdate1,
         };
       });
+
+      const ordersDocRef = doc(database, "orders", "z7zydCKkciF9gEy2IBtH");
+
+      const newBookings = allOrders.bookings;
+
+      newBookings.unshift({
+        id: id,
+        date: Timestamp.now(),
+      });
+
+      // const newHires = allOrders.hires;
+
+      // newHires.unshift({
+      //   id: id,
+      //   date: Timestamp.now(),
+      // });
+      updateDoc(ordersDocRef, {
+        bookings: newBookings,
+      });
     } catch (e) {}
 
     setDocId(uid);
@@ -426,6 +469,8 @@ const FirebaseProvider = ({ children }) => {
         transactions,
         setTransactions,
         updateTransaction,
+        allOrders,
+        setAllOrders,
       }}
     >
       {children}

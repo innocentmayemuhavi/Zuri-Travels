@@ -136,6 +136,7 @@ button:focus-visible {
 main {
   margin: 0;
   padding: 0;
+  padding-bottom: 25px;
   background-color: #242424;
   color: #b3b3b3;
 }

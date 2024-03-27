@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "./index.css";
-
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const Receipt = () => {
   const { Cart, user } = useContext(FirebaseContext);
@@ -45,7 +45,9 @@ const Receipt = () => {
       </tr>
     );
   });
-  return (
+  return Cart.totalAmount === 0 ? (
+    <Navigate to="/" />
+  ) : (
     <main className="receipt fade">
       <fieldset>
         <legend>Company Details</legend>
@@ -148,4 +150,5 @@ const Receipt = () => {
     </main>
   );
 };
+
 export { Receipt };

@@ -1,6 +1,7 @@
 import { Header } from "../Header/Header";
 import { Footer } from "../footer/Footer";
 import "./index.css";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
 

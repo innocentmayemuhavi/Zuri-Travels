@@ -1,7 +1,7 @@
 import { CarHirePage } from "../CarHirePage/carhire";
 import { CarBookingPage } from "../CarBooking/booking";
 import { Home } from "../Homepage/Home";
-
+import React from "react";
 import {
   Route,
   Routes,

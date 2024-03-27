@@ -3,7 +3,7 @@ import { Footer } from "../footer/Footer";
 import "./index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
-
+import React from "react";
 import "./index.css";
 import {
   faFacebookF,
@@ -36,7 +36,7 @@ const WhatWeDo = () => {
           </button>
           <h2>What We Do</h2>
           <div className="cart_avatar" onClick={() => navigation("/mycars")}>
-            <img src="images/carticon.png" height={35} width={35} />
+            <img src="/images/Untitled.png" height={35} width={35} />
           </div>
         </div>
       )}

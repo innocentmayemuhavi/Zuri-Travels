@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import "./index.css";
+import React from "react";
 const CreditCard = () => {
   const [isFront, setIsFront] = useState(true);
   const [swipeStartX, setSwipeStartX] = useState(null);

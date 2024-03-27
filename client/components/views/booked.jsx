@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import { Notifications } from "../notification/Notification";
-
+import React from "react";
 import "./index.css";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
@@ -83,7 +83,6 @@ const BookedView = () => {
     navigate(-1);
   };
 
-
   return (
     <main>
       {showNotification && <Notifications />}
@@ -101,8 +100,8 @@ const BookedView = () => {
           </button>
           <h2>Ticket</h2>
           <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-          <img src="images/carticon.png" height={35} width={35} />
-        </div>
+            <img src="/images/Untitled.png" height={35} width={35} />
+          </div>
         </div>
         <div className="service-page-section">
           <div className="product-image">

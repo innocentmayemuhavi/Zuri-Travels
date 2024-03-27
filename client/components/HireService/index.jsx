@@ -111,7 +111,7 @@ const HireService = () => {
             </div>
             <h2>Details</h2>
             <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-              <img src="images/carticon.png" height={35} width={35} />
+              <img src="/images/Untitled.png" height={35} width={35} />
             </div>
           </div>
           <div className="product-body">

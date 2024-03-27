@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { FirebaseContext } from "../../../src/Assets/Context/firebaseContext";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
+import React from "react";
 const ResetPassword = () => {
   const navigate = useNavigate();
   const { warning, resetpassword } = useContext(FirebaseContext);

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 import { QuickNav } from "../QuickNavigation";
 import "./index.css";
+import React from "react";
 const Content = () => {
   const navigate = useNavigate();
   const View = () => {
