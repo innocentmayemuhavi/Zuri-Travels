@@ -62,7 +62,9 @@ const ConfirmPayModal = (props) => {
             style={{ textTransform: "upperCase" }}
           />
         </div>
-        <button className="button">Cancel</button>
+        <button onClick={() => setShowPayModal(false)} className="button">
+          Cancel
+        </button>
         <button className="button" onClick={submit}>
           Confirm
         </button>

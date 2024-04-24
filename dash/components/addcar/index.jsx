@@ -40,6 +40,9 @@ const AddingCars = () => {
     category: "coach",
     trips: 1,
     offer: 0,
+    seats: 40,
+    bookedSeats: [],
+    bookings: [],
   });
 
   const handleData = (event) => {
