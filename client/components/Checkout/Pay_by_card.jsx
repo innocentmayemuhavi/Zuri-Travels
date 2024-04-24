@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { AuthContext } from "../../src/Assets/Context";
+import { Notifications } from "../notification/Notification";
 const Pay_By_Card = () => {
+  const { showNotification, setNotification, setShowNotification } =
+    useContext(AuthContext);
   const [Details, setdetails] = useState({});
-const navigate=useNavigate()
+  const navigate = useNavigate();
   const Check = (event) => {
     const { name, value } = event.target;
     setdetails((prev) => {
@@ -14,7 +18,16 @@ const navigate=useNavigate()
   const submit = (event) => {
     event.preventDefault();
     console.log(Details);
-    navigate('/receipt')
+
+    // setNotification(
+    //   <p>
+    //     <b>Notification:</b> Payment Request Sent Successfully Receipt will
+    //     generate soon await here ,give transaction code to your Customer Service
+    //     Provider
+    //   </p>
+    // );
+    setShowNotification(true);
+    // navigate('/receipt')
   };
 
   return (
@@ -61,6 +74,9 @@ const navigate=useNavigate()
       <div className="form-button">
         <button>Submit</button>
       </div>
+      <Notifications />
+      {/* {showNotification&&<Notifications/>} */}
+      <h1>Ggggggggggg</h1>
     </form>
   );
 };

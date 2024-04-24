@@ -29,7 +29,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { Timestamp } from "firebase/firestore";
-
+import { getPerformance } from "firebase/performance";
 const firebaseConfig = {
   apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
   authDomain: "superpass-fdeeb.firebaseapp.com",
@@ -43,6 +43,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const mediaDb = getStorage(app);
 // const analytics = getAnalytics(app);
+
+const perf = getPerformance(app);
 const database = getFirestore();
 
 const auth = getAuth();

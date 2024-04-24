@@ -23,7 +23,7 @@ const Checkout = () => {
     showNotification,
   } = useContext(AuthContext);
   const { user, Cart } = useContext(FirebaseContext);
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(1);
   const navigate = useNavigate();
 
   const renderbooking = Cart.bookings.map((data) => {
@@ -88,9 +88,11 @@ const Checkout = () => {
             </div>
             <h2>Checkout</h2>
             <div className="cart_avatar" onClick={() => navigate("/mycars")}>
-        <img src="/images/Untitled.png" height={35} width={35} />
-        <div className="notification_indicator">{Cart.bookings.length + Cart.cars.length}</div>
-      </div>
+              <img src="/images/Untitled.png" height={35} width={35} />
+              <div className="notification_indicator">
+                {Cart.bookings.length + Cart.cars.length}
+              </div>
+            </div>
           </div>
           <div className="checkout-page">
             <section className="checkout-modal">

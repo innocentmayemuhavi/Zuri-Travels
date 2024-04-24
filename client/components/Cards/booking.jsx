@@ -18,9 +18,9 @@ const CarBookingCard = (props) => {
         to: "Mombasa",
         seat: "1A",
         time: "Morning: 07:00",
-        cost: 3000,
+        cost: props.price / 20,
         status: "Pending",
-        toBePaid: 3000 - 3000 * (prev.offer * 0.01),
+        toBePaid: props.price / 20 - (props.price / 20) * (prev.offer * 0.01),
       };
     });
   };
@@ -41,7 +41,7 @@ const CarBookingCard = (props) => {
       <p className="car-card-name">{props.name}</p>
       <p className="car-card-desc">{props.description.slice(0, 25) + "..."}</p>
       <p className="car-card-price">
-        Ksh. {parseInt(props.price).toLocaleString()}
+        Ksh. {parseInt(props.price / 20).toLocaleString()}
       </p>
     </div>
   );

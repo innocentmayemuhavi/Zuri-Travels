@@ -30,7 +30,7 @@ const ContactPage = () => {
     mainmessage: "",
   });
 
-  const{Cart}=useContext(FirebaseContext)
+  const { Cart } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
   const handleChange = () => {

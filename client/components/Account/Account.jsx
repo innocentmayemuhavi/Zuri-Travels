@@ -22,16 +22,19 @@ const Account = () => {
     handleImage,
     uploadProgress,
     isUploading,
+    updatePhoneNumber,
   } = useContext(FirebaseContext);
 
   const [data, setData] = useState({
     name: "",
     password: "",
     confirmPassword: "",
+    phone: "",
   });
 
   const [isLoadingprof, setIsLoadingprof] = useState(false);
   const [isLoadingpass, setIsLoadingpass] = useState(false);
+  const [isLoadingphone, setIsLoadingphone] = useState(false);
   const [showError, setShowError] = useState(false);
   const [warning, setWarning] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
@@ -84,11 +87,30 @@ const Account = () => {
       alert("Name cannot be empty");
     }
   };
+  const updatePhone = async (event) => {
+    event.preventDefault();
+
+    try {
+      if (data.phone.length === 10) {
+        setIsLoadingphone(true);
+        await updatePhoneNumber(data.phone);
+        setShowSuccess(true);
+        setMessage("Phone Number Updated Successfully");
+        setIsLoadingphone(false);
+        setData({ ...data, phone: "" });
+      } else {
+        setIsLoadingphone(false);
+        alert("Phone Number must be 10 digits");
+      }
+    } catch (error) {
+      setIsLoadingphone(false);
+      alert(error);
+    }
+  };
 
   useEffect(() => {
     if (user.history) {
       setHistory(user.history);
-      console.log("history is:", user.history);
     }
     setPhotoURL(user.photoURL);
   }, [user]);
@@ -265,6 +287,32 @@ const Account = () => {
             {isLoadingpass ? "Please Wait" : "Update Pasword"}
           </button>
         </form>
+        <form className="account_info update_pass" onSubmit={updatePhone}>
+          <div>
+            <h4 className="form-label">Update Pasword</h4>
+          </div>
+          <div className="form-label warning">
+            {showError && <p>{warning}</p>}
+          </div>
+
+          <div className="page-input">
+            <label htmlFor="password">Phone:</label>
+            <input
+              value={data.phone}
+              type="number"
+              onChange={(e) => handleData(e)}
+              name="phone"
+              required
+              autoComplete="off"
+              placeholder={user.phone ? user.phone : "Enter Phone Number"}
+            />
+          </div>
+
+          <button className="button">
+            {isLoadingphone ? "Please Wait" : "Update Phone Number"}
+          </button>
+        </form>
+
         <div className="account_info">
           <div>
             <h4 className="form-label">Account Activities</h4>
@@ -296,6 +344,7 @@ const Account = () => {
           </button>
         </div>
       </div>
+
       {showSuccess && (
         <div className="success">
           <p>{mesage}</p>

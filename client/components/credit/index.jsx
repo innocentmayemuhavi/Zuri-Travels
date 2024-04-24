@@ -2,8 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import "./index.css";
 import React from "react";
+import { AuthContext } from "../../src/Assets/Context";
 const CreditCard = () => {
   const [isFront, setIsFront] = useState(true);
+  const { showNotification, setNotification, setShowNotification } =
+    useContext(AuthContext);
   const [swipeStartX, setSwipeStartX] = useState(null);
   const [swipeEndX, setSwipeEndX] = useState(null);
   const { user } = useContext(FirebaseContext);
@@ -50,6 +53,13 @@ const CreditCard = () => {
     event.preventDefault();
 
     console.log(data);
+    setNotification(
+      <p>
+        <b>Notification:</b>{" "}
+        <strong>Card Payment coming soon please use Mpesa!</strong>
+      </p>
+    );
+    setShowNotification(true);
   };
   return (
     <div className="product-body">

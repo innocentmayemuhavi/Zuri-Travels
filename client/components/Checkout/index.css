@@ -51,7 +51,7 @@
 .payment-modal-input {
   display: flex;
   flex-direction: column;
-  padding: 20px 10%;
+  padding: 20px 2%;
 }
 .payment-modal input {
   padding: 4px;
@@ -65,10 +65,10 @@
   text-align: center;
   align-items: center;
 }
-.disabled{
+.disabled {
   background-color: grey;
 }
-.disabled:hover{
+.disabled:hover {
   background-color: grey;
 }
 

@@ -30,6 +30,7 @@ import {
   getDownloadURL,
   uploadBytes,
 } from "firebase/storage";
+import { getPerformance } from "firebase/performance";
 
 import { getAnalytics } from "firebase/analytics";
 
@@ -45,6 +46,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const perf = getPerformance(app);
 const mediaDb = getStorage(app);
 const analytics = getAnalytics(app);
 const database = getFirestore();
@@ -389,6 +391,23 @@ const FirebaseProvider = ({ children }) => {
     } catch (error) {}
   };
 
+  const updatePhoneNumber = async (phone) => {
+    try {
+      const docRef = doc(database, "users", auth.currentUser.uid);
+      await updateDoc(docRef, {
+        userdata: {
+          phoneNumber: phone,
+        },
+      });
+      setUser((prev) => {
+        return {
+          ...prev,
+          phone: phone,
+        };
+      });
+    } catch (error) {}
+  }
+
   const updateUserImage = async (url) => {
     await updateProfile(auth.currentUser, {
       photoURL: url,
@@ -480,6 +499,7 @@ const FirebaseProvider = ({ children }) => {
         uploadProgress,
         isUploading,
         updateTransaction,
+        updatePhoneNumber,
       }}
     >
       {children}
