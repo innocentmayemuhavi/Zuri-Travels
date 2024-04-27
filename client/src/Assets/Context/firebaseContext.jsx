@@ -406,7 +406,7 @@ const FirebaseProvider = ({ children }) => {
         };
       });
     } catch (error) {}
-  }
+  };
 
   const updateUserImage = async (url) => {
     await updateProfile(auth.currentUser, {
