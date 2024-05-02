@@ -18,6 +18,10 @@ const CarBookingPage = () => {
   const filterdCars = filterCoach.filter(
     (data) =>
       data.category.toLowerCase().includes(searchValue.toLowerCase()) ||
+      (parseInt(data.price) / 20)
+        .toString()
+        .toLowerCase()
+        .includes(searchValue.toLowerCase()) ||
       data.name.toLowerCase().includes(searchValue.toLowerCase()) ||
       data.description.toLowerCase().includes(searchValue.toLowerCase())
   );

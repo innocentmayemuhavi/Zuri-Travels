@@ -18,6 +18,7 @@ const CarHirePage = () => {
   const [number, setnumber] = useState(0);
   const filltered = Object.values(cars).filter(
     (data) =>
+      data.price.toString().toLowerCase().includes(search.toLowerCase()) ||
       data.category
         .toLocaleLowerCase()
         .includes(`${searchval.toLocaleLowerCase()}`) ||

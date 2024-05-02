@@ -50,6 +50,7 @@ const Account = () => {
 
   const [history, setHistory] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showPhoneError, setShowPhoneError] = useState(false);
 
   const updatePassword = async (event) => {
     setIsLoadingpass(true);
@@ -100,11 +101,15 @@ const Account = () => {
         setData({ ...data, phone: "" });
       } else {
         setIsLoadingphone(false);
-        alert("Phone Number must be 10 digits");
+        setShowPhoneError(true);
+        setWarning("Phone Number must be 10 digits");
+        // alert("Phone Number must be 10 digits");
       }
     } catch (error) {
       setIsLoadingphone(false);
-      alert(error);
+
+      // alert(error);
+      setShowPhoneError(true);
     }
   };
 
@@ -127,6 +132,12 @@ const Account = () => {
       setShowError(false);
     }, 2000);
   }, [warning, showError]);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowPhoneError(false);
+      setWarning("");
+    }, 2000);
+  }, [showPhoneError, warning]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -289,14 +300,13 @@ const Account = () => {
         </form>
         <form className="account_info update_pass" onSubmit={updatePhone}>
           <div>
-            <h4 className="form-label">Update Pasword</h4>
+            <h4 className="form-label">Update Phone</h4>
           </div>
           <div className="form-label warning">
-            {showError && <p>{warning}</p>}
+            {showPhoneError && <p>{warning}</p>}
           </div>
-
           <div className="page-input">
-            <label htmlFor="password">Phone:</label>
+            <label htmlFor="phone">Phone:</label>
             <input
               value={data.phone}
               type="number"

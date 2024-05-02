@@ -15,6 +15,7 @@
     "axios": "^1.6.2",
     "buffer": "^6.0.3",
     "chart.js": "^4.4.2",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.22.2",
     "framer-motion": "^10.16.16",
     "moment": "^2.29.4",

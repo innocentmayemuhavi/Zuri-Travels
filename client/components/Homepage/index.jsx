@@ -92,27 +92,32 @@ const HomeMobile = () => {
     <CarBookingCard {...data} key={data.id} />
   ));
 
-  const searchBooked = filterdBooked.filter((data) =>
-    data.name.toLowerCase().includes(
-      search.toLowerCase() ||
-        data.category.toLowerCase().includes(search.toLowerCase()) ||
-        data.brand.toLowerCase().includes(search.toLowerCase()) ||
-        parseInt(data.price / 20)
-          .toString()
-          .includes(search.toString()) ||
-        data.location.toLowerCase().includes(search.toLowerCase())
-    )
+  const searchBooked = filterdBooked.filter(
+    (data) =>
+      data.description.toLowerCase().includes(search.toLowerCase()) ||
+      data.name.toLowerCase().includes(search.toLowerCase()) ||
+      (parseInt(data.price) / 20)
+        .toString()
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      data.category.toLowerCase().includes(search.toLowerCase())
   );
-  const searchHired = filterdHired.filter((data) =>
-    data.name
-      .toLowerCase()
-      .includes(
-        search.toLowerCase() ||
-          data.category.toLowerCase().includes(search.toLowerCase()) ||
-          data.brand.toLowerCase().includes(search.toLowerCase()) ||
-          data.price.toString().includes(search.toLowerCase()) ||
-          data.location.toLowerCase().includes(search.toLowerCase())
-      )
+  const searchHired = filterdHired.filter(
+    (data) =>
+      data.description.toLowerCase().includes(search.toLowerCase()) ||
+      data.name.toLowerCase().includes(search.toLowerCase()) ||
+      data.price.toString().toLowerCase().includes(search.toLowerCase()) ||
+      data.category.toLowerCase().includes(search.toLowerCase())
+    // data.name
+    //   .toLowerCase()
+    //   .includes(
+    //     search.toLowerCase() ||
+    //       data.description.toLowerCase().includes(search.toLowerCase()) ||
+    //       data.category.toLowerCase().includes(search.toLowerCase()) ||
+    //       data.brand.toLowerCase().includes(search.toLowerCase()) ||
+    //       data.price.toString().includes(search.toLowerCase()) ||
+    //       data.location.toLowerCase().includes(search.toLowerCase())
+    //   )
   );
   const searchHiredRender = searchHired.map((data) => (
     <CarHireCard {...data} key={data.id} />
